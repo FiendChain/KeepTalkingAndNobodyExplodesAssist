@@ -19,6 +19,8 @@ import { CapacitorComponent } from './needy-modules/capacitor/capacitor.componen
 import { GasComponent } from './needy-modules/gas/gas.component';
 import { KnobComponent } from './needy-modules/knob/knob.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
     exports: [
         BombComponent,
@@ -45,7 +47,8 @@ import { KnobComponent } from './needy-modules/knob/knob.component';
         BombService,
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule,
     ],
     bootstrap: [
         BombComponent,
