@@ -1,5 +1,6 @@
 import { Injectable, Component, ComponentFactoryResolver } from "@angular/core";
 import { BombModuleSelector } from "./module-selector/module-selector.component";
+import { BombModuleInterface } from "./bomb-module.interface";
 
 // this will contain base information about the bomb
 // will contain list of components that were selected
@@ -21,7 +22,10 @@ export class BombService {
     public getModules(): any[] {
         var modules: any[] = [];
         for(let bombModule of this.modules) {
-            modules.push(bombModule.getModule());
+            var actualBombModule: BombModuleInterface = bombModule.getModule();
+            if(actualBombModule) {
+                modules.push(actualBombModule);    
+            }
         }
         return modules;
     }

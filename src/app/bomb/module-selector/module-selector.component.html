@@ -1,5 +1,11 @@
-<h2>Module Selector</h2>
-<div *ngFor="let option of getOptions()">
-    <a (click)="loadModule(option)">{{option}}</a>
+<div class="card">
+  <div class="card-body">
+      <select [(ngModel)]="moduleName" id="option" (change)="loadModule()">
+        <option *ngFor="let option of getOptions()" [value]="option">{{option}}</option>
+        <option [ngValue]="null">None</option>
+      </select>
+      <ng-template bomb-module-container></ng-template>
+      <p *ngIf="!moduleName">No module selected!</p>
+  </div>
 </div>
-<ng-template bomb-module-container></ng-template>
+
