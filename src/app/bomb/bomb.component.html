@@ -1,8 +1,10 @@
 <h2>Bomb solver here (temp)</h2>
 <input [(ngModel)]="service.serial">
-<ul class="list-group">
-    <li *ngFor="let component of getComponents()" class="list-item">
-        {{ component }}
-    </li>
-</ul>
-<app-button></app-button>
+<table>
+    <tr *ngFor="let row of counter(rows)">
+        <td *ngFor="let col of counter(columns)">
+            <bomb-module-selector></bomb-module-selector>
+        </td>
+    </tr>
+</table>
+    

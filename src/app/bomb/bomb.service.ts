@@ -1,4 +1,5 @@
-import { Injectable, Component } from "@angular/core";
+import { Injectable, Component, ComponentFactoryResolver } from "@angular/core";
+import { BombModuleSelector } from "./module-selector/module-selector.component";
 
 // this will contain base information about the bomb
 // will contain list of components that were selected
@@ -7,15 +8,21 @@ import { Injectable, Component } from "@angular/core";
 
 @Injectable()
 export class BombService {
-    public components: any[] = [];
+    private modules: BombModuleSelector[] = [];
     public serial: string;
     public total_batteries: number = 0;
 
-    public addComponent(): void {
+    constructor() {}
 
+    public addModule(bombModule: BombModuleSelector): void {
+        this.modules.push(bombModule);
     }
 
-    public removeComponent(): void {
-
+    public getModules(): any[] {
+        var modules: any[] = [];
+        for(let bombModule of this.modules) {
+            modules.push(bombModule.getModule());
+        }
+        return modules;
     }
 }

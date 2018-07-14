@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { BombService } from "./bomb.service";
 
 @Component({
@@ -6,11 +6,14 @@ import { BombService } from "./bomb.service";
     templateUrl: './bomb.component.html'
 })
 export class BombComponent {
+    @Input('columns') columns: number = 3;
+    @Input('rows') rows: number = 2;
+
     constructor(
         public service: BombService,
     ) {}
 
-    private getComponents(): any[] {
-        return this.service.components;
+    counter(i: number) {
+        return new Array(i);
     }
 }

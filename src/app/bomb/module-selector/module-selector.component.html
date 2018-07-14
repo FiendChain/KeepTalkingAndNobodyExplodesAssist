@@ -1,0 +1,5 @@
+<h2>Module Selector</h2>
+<div *ngFor="let option of getOptions()">
+    <a (click)="loadModule(option)">{{option}}</a>
+</div>
+<ng-template bomb-module-container></ng-template>
