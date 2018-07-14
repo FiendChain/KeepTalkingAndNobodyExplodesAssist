@@ -35,7 +35,7 @@ export class BombModuleSelector implements OnInit {
         return bombModuleNames;
     }
 
-    private loadModule(): void {
+    public loadModule(): void {
         if(!this.moduleName) {
             this.module.viewContainerRef.clear();
         } else if(bombModules.has(this.moduleName)) {
