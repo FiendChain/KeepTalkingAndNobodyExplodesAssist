@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wire-sequence.component.css']
 })
 export class WireSequenceComponent implements OnInit {
+  public name: string = 'wire-sequence';
 
   constructor() { }
 
