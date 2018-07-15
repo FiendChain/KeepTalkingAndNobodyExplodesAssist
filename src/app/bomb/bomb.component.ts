@@ -1,13 +1,13 @@
 import { Component, Input } from "@angular/core";
 import { BombService } from "./bomb.service";
+import { BombLayout, BombLayoutInterface } from "./bomb-layout.component";
 
 @Component({
     selector: 'bomb-component',
     templateUrl: './bomb.component.html'
 })
 export class BombComponent {
-    @Input('columns') columns: number = 3;
-    @Input('rows') rows: number = 2;
+    public bombLayout: BombLayoutInterface = BombLayout;
 
     constructor(
         public service: BombService,

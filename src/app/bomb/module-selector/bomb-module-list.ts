@@ -1,3 +1,5 @@
+// display modules
+import { TimerComponent } from "../modules/timer/timer.component";
 // regular modules
 import { ButtonComponent } from "../modules/button/button.component";
 import { ComplicatedWiresComponent } from "../modules/complicated-wires/complicated-wires.component";
@@ -14,6 +16,7 @@ import { GasComponent } from "../needy-modules/gas/gas.component";
 import { KnobComponent } from "../needy-modules/knob/knob.component";
 import { BombModuleInterface } from "../bomb-module.interface";
 
+
 // module list
 export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>()
     // Name of module in dropdown menu, Component 
@@ -24,8 +27,10 @@ export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>(
     .set("Morse Code", MorseCodeComponent)
     .set("Password", PasswordComponent)
     .set("Simon Says", SimonSaysComponent)
+    .set("Timer", TimerComponent)   // timer
     .set("Who's First", WhoFirstComponent)
     .set("Wire Sequence", WireSequenceComponent)
+    // needy modules
     .set("Capacitor", CapacitorComponent)
     .set("Gas", GasComponent)
     .set("Knobs", KnobComponent);

@@ -9,6 +9,9 @@ import { bombModules, bombModuleNames } from "./bomb-module-list";
 @Component({
     selector: 'bomb-module-selector',
     templateUrl: './module-selector.component.html',
+    styleUrls: [
+        './module-selector.component.css',
+    ],
 })
 export class BombModuleSelector implements OnInit {
     @Input('module-name') moduleName: string = bombModuleNames[0];

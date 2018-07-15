@@ -4,7 +4,7 @@
         <option *ngFor="let option of getOptions()" [value]="option">{{option}}</option>
         <option [ngValue]="null">None</option>
       </select>
-      <ng-template bomb-module-container></ng-template>
+      <div bomb-module-container></div>
       <p *ngIf="!moduleName">No module selected!</p>
   </div>
 </div>

@@ -1,0 +1,5 @@
+<div class="btn btn-outline-primary" (click)="timer.toggle()">
+  <a *ngFor="let digit of timer.getDigits()">
+    {{digit.getValue()}}
+  </a>
+</div>

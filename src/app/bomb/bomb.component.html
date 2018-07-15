@@ -1,22 +1,20 @@
-<div>
-  <div class="form-group row">
-    <label for="serial" class="col-sm-0 col-form-label">Serial</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="serial" placeholder="Serial" [(ngModel)]="service.serial">
-    </div>
+<div class="row">
+  <div class="form-group col-sm">
+    <label for="serial" class="col-form-label">Serial</label>
+    <input type="text" class="form-control" id="serial" placeholder="Serial" [(ngModel)]="service.serial">
   </div>
 </div>
 
 
 <h2>Front</h2>
-<div class="row" *ngFor="let row of counter(rows)">
-  <div class="col" *ngFor="let col of counter(columns)">
-    <bomb-module-selector></bomb-module-selector>
+<div class="row" *ngFor="let row of bombLayout.front">
+  <div class="col" *ngFor="let col of row">
+    <bomb-module-selector [module-name]="col"></bomb-module-selector>
   </div>
 </div>
 <h2>Back</h2>
-<div class="row" *ngFor="let row of counter(rows)">
-  <div class="col" *ngFor="let col of counter(columns)">
-    <bomb-module-selector [module-name]="'Maze'"></bomb-module-selector>
+<div class="row" *ngFor="let row of bombLayout.back">
+  <div class="col" *ngFor="let col of row">
+    <bomb-module-selector [module-name]="col"></bomb-module-selector>
   </div>
 </div>
