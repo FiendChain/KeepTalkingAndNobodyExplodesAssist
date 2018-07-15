@@ -1,3 +1,8 @@
-/* div.card {
+div.module-selector {
+    z-index: 1;
+}
 
-} */
+div.card {
+    min-width: 350px;
+    height: 100%;
+}

@@ -1,11 +1,20 @@
 <div class="card">
   <div class="card-body">
-      <select [(ngModel)]="moduleName" id="option" (change)="loadModule()">
-        <option *ngFor="let option of getOptions()" [value]="option">{{option}}</option>
-        <option [ngValue]="null">None</option>
-      </select>
+    <!--Selector-->
+    <div class="module-selector float-right">
+        <div ngbDropdown class="d-inline-block" placement="bottom-right">
+          <button class="btn btn-outline-primary btn-sm" id="module_list" ngbDropdownToggle>{{moduleName || "None"}}</button>
+          <div ngbDropdownMenu aria-labelledby="module_list">
+            <small class="dropdown-item" *ngFor="let option of getOptions()" (click)="loadModule(option)">{{option}}</small>
+            <div class="dropdown-divider"></div>
+            <small class="dropdown-item" (click)="loadModule(null)">None</small>
+          </div>
+        </div>
+    </div>
+    <!--Bomb module-->
+    <div class="text-left">
       <div bomb-module-container></div>
-      <p *ngIf="!moduleName">No module selected!</p>
+    </div>
   </div>
 </div>
 
