@@ -9,12 +9,14 @@ import { MorseCodeComponent } from "../modules/morse-code/morse-code.component";
 import { PasswordComponent } from "../modules/password/password.component";
 import { SimonSaysComponent } from "../modules/simon-says/simon-says.component";
 import { WhoFirstComponent } from "../modules/who-first/who-first.component";
+import { WiresComponent } from "../modules/wires/wires.component";
 import { WireSequenceComponent } from "../modules/wire-sequence/wire-sequence.component";
 // needy modules
 import { CapacitorComponent } from "../needy-modules/capacitor/capacitor.component";
 import { GasComponent } from "../needy-modules/gas/gas.component";
 import { KnobComponent } from "../needy-modules/knob/knob.component";
 import { BombModuleInterface } from "../bomb-module.interface";
+
 
 
 // module list
@@ -29,6 +31,7 @@ export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>(
     .set("Simon Says", SimonSaysComponent)
     .set("Timer", TimerComponent)   // timer
     .set("Who's First", WhoFirstComponent)
+    .set("Wires", WiresComponent)
     .set("Wire Sequence", WireSequenceComponent)
     // needy modules
     .set("Capacitor", CapacitorComponent)

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule, NgbDropdownModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 import { BombService } from "./bomb.service";
 import { BombComponent } from './bomb.component';
@@ -22,7 +23,6 @@ import { KnobComponent } from './needy-modules/knob/knob.component';
 import { FormsModule } from '@angular/forms';
 import { BombModuleSelector } from './module-selector/module-selector.component';
 import { BombModuleContainer } from './module-selector/module-container.directive';
-import { BombModuleInterface } from './bomb-module.interface';
 import { TimerComponent } from './modules/timer/timer.component';
 
 @NgModule({
@@ -36,16 +36,16 @@ import { TimerComponent } from './modules/timer/timer.component';
         BombModuleContainer,
         // regular modules
         ButtonComponent,
-        WiresComponent,
+        ComplicatedWiresComponent,
+        MazeComponent,
+        MemoryComponent,
+        MorseCodeComponent,
+        PasswordComponent,
         SimonSaysComponent,
         TimerComponent,
-        MorseCodeComponent,
-        MemoryComponent,
         WhoFirstComponent,
-        ComplicatedWiresComponent,
         WireSequenceComponent,
-        MazeComponent,
-        PasswordComponent,
+        WiresComponent,
         // needy modules
         GasComponent,
         CapacitorComponent,
@@ -55,16 +55,16 @@ import { TimerComponent } from './modules/timer/timer.component';
     entryComponents: [
         // regular modules
         ButtonComponent,
-        WiresComponent,
+        ComplicatedWiresComponent,
+        MazeComponent,
+        MemoryComponent,
+        MorseCodeComponent,
+        PasswordComponent,
         SimonSaysComponent,
         TimerComponent,
-        MorseCodeComponent,
-        MemoryComponent,
         WhoFirstComponent,
-        ComplicatedWiresComponent,
         WireSequenceComponent,
-        MazeComponent,
-        PasswordComponent,
+        WiresComponent,
         // needy modules
         GasComponent,
         CapacitorComponent,
@@ -76,6 +76,7 @@ import { TimerComponent } from './modules/timer/timer.component';
     imports: [
         BrowserModule,
         FormsModule,
+        NgbModule,
     ],
     bootstrap: [
         BombComponent,

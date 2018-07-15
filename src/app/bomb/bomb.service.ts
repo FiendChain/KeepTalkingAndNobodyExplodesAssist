@@ -12,6 +12,7 @@ export class BombService {
     private modules: BombModuleSelector[] = [];
     public serial: string;
     public total_batteries: number = 0;
+    public total_strikes: number = 0;
 
     constructor() {}
 

@@ -1,18 +1,28 @@
+<h3>General Information</h3>
 <div class="row">
   <div class="form-group col-sm">
     <label for="serial" class="col-form-label">Serial</label>
-    <input type="text" class="form-control" id="serial" placeholder="Serial" [(ngModel)]="service.serial">
+    <input type="text" class="form-control" id="serial" placeholder="Serial" [(ngModel)]="service.serial" required #serial="ngModel">
+    <div *ngIf="serial.invalid" class="invalid-feedback">
+      <div *ngIf="serial.errors.required" >Serial is required</div>
+    </div>
+  </div>
+  <div class="form-group col-sm">
+    <label for="serial" class="col-form-label">Total batteries</label>
+    <input type="number" class="form-control" id="battery" placeholder="Battery Count" [(ngModel)]="service.total_batteries" min="0" max="5" required #batteries="ngModel">
+    <div *ngIf="batteries.invalid" class="invalid-feedback">
+      <div *ngIf="batteries.errors.required" >Battery count is required</div>
+    </div>
   </div>
 </div>
 
-
-<h2>Front</h2>
+<h3>Front</h3>
 <div class="row" *ngFor="let row of bombLayout.front">
   <div class="col" *ngFor="let col of row">
     <bomb-module-selector [module-name]="col"></bomb-module-selector>
   </div>
 </div>
-<h2>Back</h2>
+<h3>Back</h3>
 <div class="row" *ngFor="let row of bombLayout.back">
   <div class="col" *ngFor="let col of row">
     <bomb-module-selector [module-name]="col"></bomb-module-selector>
