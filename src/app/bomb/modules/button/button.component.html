@@ -2,7 +2,7 @@
   <!--Selector-->
   <div class="btn-group" ngbDropdown role="group">
     <button [ngClass]="getSelectorClasses()" class="btn btn-sm" id="button-colours" ngbDropdownToggle>
-      {{colour}}
+      {{getColour()}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-colours">
       <small class="dropdown-item" *ngFor="let colour of colours" (click)="setColour(colour)">
@@ -44,7 +44,7 @@
   </div>
   <!--Help text-->
   <div class="col">
-    
+    <p>Directions for defusing this module.</p>
   </div>
 </div>
 

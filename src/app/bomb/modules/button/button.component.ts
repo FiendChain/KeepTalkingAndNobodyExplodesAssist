@@ -43,6 +43,10 @@ export class ButtonComponent implements OnInit, BombModuleInterface {
         }
     }
 
+    public getColour(): string {
+        return this.colour;
+    }
+
     public setButtonText(text: string): void {
         this.buttonText = text;
     }
