@@ -17,3 +17,7 @@
     width: 18px !important;
     min-height: 175px;
 }
+
+.dropdown-toggle::after {
+    display:none;
+}
