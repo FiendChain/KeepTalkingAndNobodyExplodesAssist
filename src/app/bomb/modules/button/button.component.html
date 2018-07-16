@@ -1,7 +1,7 @@
 <div class="btn-group mr-3">
   <!--Selector-->
   <div class="btn-group" ngbDropdown role="group">
-    <button [ngClass]="getSelectorClasses()" class="btn btn-sm" id="button-colours" ngbDropdownToggle>
+    <button [ngClass]="getSelectorClasses()" class="btn btn-sm dropdown-toggle" id="button-colours" ngbDropdownToggle>
       {{getColour()}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-colours">
@@ -12,7 +12,7 @@
   </div>
   <!--Button-->
   <div class="btn-group" ngbDropdown role="group">
-    <button class="btn btn-outline-primary btn-sm" id="button-text" ngbDropdownToggle>
+    <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="button-text" ngbDropdownToggle>
       {{buttonText}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-text">
@@ -23,17 +23,17 @@
   </div>
 </div>
 
-<div class="row mt-2">
+<div class="d-flex flex-row mt-2">
   <!--UI Elements-->
-  <div class="col">
+  <div class="d-flex-inline d-flex flex-row mr-2">
     <!--Button-->
-    <div class="d-inline-block mr-1">
+    <div class="d-inline mr-1">
       <button class="btn btn-{{colourClass}} btn-square">
         {{buttonText}}
       </button>
     </div>
     <!--Strip display-->
-    <div ngbDropdown class="d-inline-block" placement="left">
+    <div ngbDropdown class="d-inline" placement="left">
       <button class="btn btn-{{stripColourClass}} strip-bar" id="strip-colours" ngbDropdownToggle></button>
       <div ngbDropdownMenu aria-labelledby="strip-colours">
         <small class="dropdown-item" *ngFor="let colour of colours" (click)="setStripColour(colour)">
@@ -43,8 +43,8 @@
     </div>
   </div>
   <!--Help text-->
-  <div class="col">
-    <p>Directions for defusing this module.</p>
+  <div class="d-flex-inline">
+    <small><p>Directions for defusing this module.</p></small>
   </div>
 </div>
 

@@ -1,3 +1,5 @@
-<p>
-  complicated-wires works!
-</p>
+<div class="d-flex flex-row">
+  <div class="ml-0 mr-2" *ngFor="let wire of wires">
+    <wire-component [wire]=wire></wire-component>
+  </div>
+</div>

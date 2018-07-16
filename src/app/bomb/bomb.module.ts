@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule, NgbDropdownModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { WireConnectionModule } from './wire-component/wire.module';
 
 import { BombService } from "./bomb.service";
 import { BombComponent } from './bomb.component';
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { BombModuleSelector } from './module-selector/module-selector.component';
 import { BombModuleContainer } from './module-selector/module-container.directive';
 import { TimerComponent } from './modules/timer/timer.component';
+
 
 @NgModule({
     exports: [
@@ -77,6 +79,7 @@ import { TimerComponent } from './modules/timer/timer.component';
         BrowserModule,
         FormsModule,
         NgbModule,
+        WireConnectionModule,
     ],
     bootstrap: [
         BombComponent,
