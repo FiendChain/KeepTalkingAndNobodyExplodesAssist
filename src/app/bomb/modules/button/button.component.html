@@ -1,7 +1,7 @@
 <div class="btn-group mr-3">
   <!--Selector-->
   <div class="btn-group" ngbDropdown role="group">
-    <button [ngClass]="getSelectorClasses()" class="btn btn-sm dropdown-toggle" id="button-colours" ngbDropdownToggle>
+    <button [ngClass]="getSelectorClasses()" class="btn btn-sm" id="button-colours" ngbDropdownToggle>
       {{getColour()}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-colours">
@@ -12,7 +12,7 @@
   </div>
   <!--Button-->
   <div class="btn-group" ngbDropdown role="group">
-    <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="button-text" ngbDropdownToggle>
+    <button class="btn btn-outline-primary btn-sm" id="button-text" ngbDropdownToggle>
       {{buttonText}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-text">
