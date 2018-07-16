@@ -1,17 +1,33 @@
 <h3>General Information</h3>
 <div class="row">
+  <!--Serial-->
   <div class="form-group col-sm">
     <label for="serial" class="col-form-label">Serial</label>
-    <input type="text" class="form-control" id="serial" placeholder="Serial" ngModel (ngModelChange)="service.serial.next($event)" required #serial="ngModel">
+    <input  type="text" class="form-control" id="serial" placeholder="Serial" 
+            ngModel (ngModelChange)="service.serial.next($event)" 
+            required #serial="ngModel">
     <div *ngIf="serial.invalid" class="invalid-feedback">
       <div *ngIf="serial.errors.required" >Serial is required</div>
     </div>
   </div>
+  <!--Total batteries-->
   <div class="form-group col-sm">
     <label for="serial" class="col-form-label">Total batteries</label>
-    <input type="number" class="form-control" id="battery" placeholder="Battery Count" [(ngModel)]="service.total_batteries" min="0" max="5" required #batteries="ngModel">
+    <input  type="number" class="form-control" id="battery" placeholder="Battery Count" 
+            [ngModel]="totalBatteries" (ngModelChange)="service.totalBatteries.next($event)" 
+            min="0" max="5" required #batteries="ngModel">
     <div *ngIf="batteries.invalid" class="invalid-feedback">
       <div *ngIf="batteries.errors.required" >Battery count is required</div>
+    </div>
+  </div>
+  <!--Lit indicator-->
+  <div class="form-group col-sm">
+    <label for="litIndicator" class="col-form-label">Lit Indicator</label>
+    <input  type="text" class="form-control" id="litIndicator" placeholder="Lit Indicator" 
+            ngModel (ngModelChange)="service.litIndicator.next($event)" 
+            #litIndicator="ngModel">
+    <div *ngIf="litIndicator.invalid" class="invalid-feedback">
+      
     </div>
   </div>
 </div>

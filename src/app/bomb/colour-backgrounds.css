@@ -1,0 +1,31 @@
+/* Create background colours */
+.background-blue {
+    background-color: #007bff !important;
+    color: white;
+}
+
+.background-red {
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+.background-yellow {
+    background-color: #ffc107 !important;
+    color: black;
+}
+
+.background-green {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.background-white {
+    background-color: #ffffff !important;
+    border: 1px solid #343a40 !important;
+    color: black;
+}
+
+.background-black {
+    background-color: #343a40 !important;
+    color: white;
+}

@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { BombModuleSelector } from './module-selector/module-selector.component';
 import { BombModuleContainer } from './module-selector/module-container.directive';
 import { TimerComponent } from './modules/timer/timer.component';
+import { BombButtonModule } from './modules/button/button.module';
 
 
 @NgModule({
@@ -37,7 +38,6 @@ import { TimerComponent } from './modules/timer/timer.component';
         BombModuleSelector,
         BombModuleContainer,
         // regular modules
-        ButtonComponent,
         ComplicatedWiresComponent,
         MazeComponent,
         MemoryComponent,
@@ -56,7 +56,6 @@ import { TimerComponent } from './modules/timer/timer.component';
     ],
     entryComponents: [
         // regular modules
-        ButtonComponent,
         ComplicatedWiresComponent,
         MazeComponent,
         MemoryComponent,
@@ -76,6 +75,7 @@ import { TimerComponent } from './modules/timer/timer.component';
         BombService,
     ],
     imports: [
+        BombButtonModule,
         BrowserModule,
         FormsModule,
         NgbModule,

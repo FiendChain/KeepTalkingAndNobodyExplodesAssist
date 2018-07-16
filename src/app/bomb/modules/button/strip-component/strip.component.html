@@ -1,0 +1,9 @@
+<!--Strip display-->
+<div ngbDropdown placement="left">
+  <button class="btn background-{{stripLED.getColour().toLowerCase()}} strip-bar" id="strip-colours" ngbDropdownToggle></button>
+  <div ngbDropdownMenu aria-labelledby="strip-colours">
+    <small class="dropdown-item" *ngFor="let colour of stripLED.colours" (click)="stripLED.setColour(colour); indicateChange();">
+    {{colour}}
+    </small>
+  </div>
+</div>

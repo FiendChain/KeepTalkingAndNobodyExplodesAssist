@@ -1,7 +1,7 @@
-import { Injectable, Component, ComponentFactoryResolver } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BombModuleSelector } from "./module-selector/module-selector.component";
 import { BombModuleInterface } from "./bomb-module.interface";
-import { Observable, Subject, BehaviorSubject } from "../../../node_modules/rxjs";
+import { BehaviorSubject } from "../../../node_modules/rxjs";
 
 // this will contain base information about the bomb
 // will contain list of components that were selected
@@ -11,9 +11,10 @@ import { Observable, Subject, BehaviorSubject } from "../../../node_modules/rxjs
 @Injectable()
 export class BombService {
     private modules: BombModuleSelector[] = [];
-    public serial: Subject<string> = new BehaviorSubject<string>("");
-    public total_batteries: number = 0;
-    public total_strikes: number = 0;
+    public serial = new BehaviorSubject<string>("");
+    public totalBatteries = new BehaviorSubject<number>(0);
+    public totalStrikes = new BehaviorSubject<number>(0);
+    public litIndicator = new BehaviorSubject<string>("");
 
     constructor() {}
 

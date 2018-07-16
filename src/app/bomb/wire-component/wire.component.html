@@ -5,7 +5,7 @@
         style="height: 20px"
         *ngIf="!wire.isVertical()">
     <div  [ngClass]="{'progress-bar-stripped': wire.stripped}"
-          class="progress-bar background-{{wire.getColour()}}" 
+          class="progress-bar background-{{wire.getColour().toLowerCase()}}" 
           style="width: 100%;" role="progressbar"
           *ngIf="wire.isConnected()">
       <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
@@ -17,7 +17,7 @@
         *ngIf="wire.isVertical()">
     <div  *ngIf="wire.isConnected()" 
           [ngClass]="{'progress-bar-stripped': wire.stripped}"
-          class="progress-bar background-{{wire.getColour()}}" 
+          class="progress-bar background-{{wire.getColour().toLowerCase()}}" 
           style="height: 100%; width: 100%" role="progressbar">
       <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
     </div>

@@ -2,7 +2,7 @@
   <div class="form-group">
     <input  type="number" class="form-control form-control-sm" 
             id="strikes" placeholder="Strike Count" 
-            [(ngModel)]="service.total_strikes" 
+            [ngModel]="totalStrikes" (ngModelChange)="service.totalStrikes.next($event)" 
             min="0" max="2" required 
             #strikes="ngModel" 
             style="width: 30%">

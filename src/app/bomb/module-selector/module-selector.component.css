@@ -4,5 +4,6 @@ div.module-selector {
 
 div.card {
     min-width: 350px;
+    max-width: 500px;
     height: 100%;
 }

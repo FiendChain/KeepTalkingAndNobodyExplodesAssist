@@ -1,0 +1,53 @@
+<!--Selector menu-->
+<div class="btn-group mr-3">
+  <!--Selector for colour-->
+  <div class="btn-group" ngbDropdown role="group">
+    <button [ngClass]="getSelectorClasses()" class="btn btn-sm" id="button-colours" ngbDropdownToggle>
+      {{button.getColour()}}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="button-colours">
+      <small class="dropdown-item" *ngFor="let colour of button.colours" (click)="button.setColour(colour); indicateChange(button);">
+        {{colour}}
+      </small>
+    </div>
+  </div>
+  <!--Button Text-->
+  <div class="btn-group" ngbDropdown role="group">
+    <button class="btn btn-outline-primary btn-sm" id="button-text" ngbDropdownToggle>
+      {{button.getText()}}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="button-text">
+      <small class="dropdown-item" *ngFor="let text of button.textList" (click)="button.setText(text); indicateChange(button);">
+        {{text}}
+      </small>
+    </div>
+  </div>
+</div>
+
+<!--Buttons-->
+<div class="d-flex flex-row mt-2">
+  <!--UI Elements-->
+  <div class="d-flex-inline d-flex flex-row mr-2">
+    <!--Button-->
+    <div class="d-inline mr-1">
+      <button class="btn background-{{button.getColour().toLowerCase()}} btn-square">
+        {{button.getText()}}
+      </button>
+    </div>
+    <!--Strip display-->
+    <div class="d-inline">
+      <strip-led [stripLED]="stripLED" (onChange)="indicateChange($event)"></strip-led>
+    </div>
+  </div>
+  <!--Text-->
+  <div class="d-flex-inline d-flex flex-row mr-2">
+    <small>
+      <strong>Instructions: </strong>
+      <a>{{buttonAction}}</a><br>
+      <div *ngIf="stripAction">
+        <strong>Strip Instructions: </strong>
+        <a>{{stripAction}}</a>
+      </div>
+    </small>
+  </div>
+</div>

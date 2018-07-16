@@ -22,26 +22,3 @@
     display:none;
 }
 
-/* Create background colours */
-.background-Blue {
-    background-color: #007bff !important;
-}
-
-.background-Red {
-    background-color: #dc3545 !important;
-}
-
-.background-Yellow {
-    background-color: #ffc107 !important;
-}
-
-.background-White {
-    background-color: #ffffff !important;
-    border-radius: 0px;
-    border: 1px solid #343a40 !important;
-    color: black;
-}
-
-.background-Black {
-    background-color: #343a40 !important;
-}

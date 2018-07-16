@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BombService } from '../../bomb.service';
 import { BombTimer, BombTimerDigit } from './bomb-timer';
 import { BombModuleInterface } from '../../bomb-module.interface';
@@ -10,7 +10,7 @@ import { BombModuleInterface } from '../../bomb-module.interface';
     templateUrl: './timer.component.html',
     styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements OnInit, BombModuleInterface {
+export class TimerComponent implements BombModuleInterface {
     public name: string = 'timer';
 
     public timer: BombTimer = new BombTimer([
@@ -18,11 +18,13 @@ export class TimerComponent implements OnInit, BombModuleInterface {
         new BombTimerDigit(60, 0, "s"),
     ]);
 
+    public totalStrikes: number = 0;
+
     constructor(
         public service: BombService,
-    ) { }
-
-    ngOnInit() {
-
+    ) { 
+        this.service.totalStrikes.subscribe((totalStrikes: number) => {
+            this.totalStrikes = totalStrikes;
+        })
     }
 }
