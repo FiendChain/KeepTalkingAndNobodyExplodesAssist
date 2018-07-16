@@ -1,19 +1,5 @@
 <div class="row" *ngFor="let wire of wires" style="width: 70%">
   <div class="col mt-1">
-    <div ngbDropdown placement="bottom-right">
-      <div class="progress" id="colour_list" ngbDropdownToggle style="height: 20px">
-        <div  class="progress-bar bg-{{wire.colourClass}}" 
-              [ngClass]="{'progress-bar-striped': wire.stripped}"
-              style="width: 100%;"
-              role="progressbar"
-              >
-        </div>
-      </div>
-      <div ngbDropdownMenu aria-labelledby="colour_list">
-        <small class="dropdown-item" *ngFor="let colour of wire.colours" (click)="wire.setColour(colour)">{{colour}}</small>
-        <div class="dropdown-divider"></div>
-        <small class="dropdown-item" (click)="wire.toggleStripped()">Toggle stripped</small>
-      </div>
-    </div>
+    <wire-component [wire]="wire"></wire-component>
   </div>
 </div>
