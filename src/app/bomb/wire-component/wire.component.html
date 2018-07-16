@@ -5,7 +5,7 @@
         style="height: 20px"
         *ngIf="!wire.isVertical()">
     <div  [ngClass]="{'progress-bar-stripped': wire.stripped}"
-          class="progress-bar bg-{{wire.colourClass}}" 
+          class="progress-bar background-{{wire.getColour()}}" 
           style="width: 100%;" role="progressbar"
           *ngIf="wire.isConnected()">
       <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
@@ -17,18 +17,18 @@
         *ngIf="wire.isVertical()">
     <div  *ngIf="wire.isConnected()" 
           [ngClass]="{'progress-bar-stripped': wire.stripped}"
-          class="progress-bar bg-{{wire.colourClass}}" 
+          class="progress-bar background-{{wire.getColour()}}" 
           style="height: 100%; width: 100%" role="progressbar">
       <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
     </div>
   </div>
   <!--Dropdown menu-->
   <div ngbDropdownMenu aria-labelledby="colour_list">
-    <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setColour(colour)">{{colour}}</small>
+    <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setColour(colour); indicateUpdate();">{{colour}}</small>
     <div *ngIf="wire.isConnected()">
       <div class="dropdown-divider"></div>
-      <small class="dropdown-item" (click)="wire.setColour()">Remove Wire</small>
-      <small class="dropdown-item" (click)="wire.toggleStripped()">Toggle stripped</small>
+      <small class="dropdown-item" (click)="wire.setColour(); indicateUpdate();">Remove Wire</small>
+      <small *ngIf="enableStrippedToggle" class="dropdown-item" (click)="wire.toggleStripped(); indicateUpdate();">Toggle stripped</small>
     </div>
   </div>
 </div>

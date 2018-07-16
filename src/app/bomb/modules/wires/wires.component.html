@@ -1,5 +1,5 @@
 <div class="row" *ngFor="let wire of wires" style="width: 70%">
   <div class="col mt-1">
-    <wire-component [wire]="wire"></wire-component>
+    <wire-component [wire]="wire" [enableStrippedToggle]="false" (onChange)="checkWires($event)"></wire-component>
   </div>
 </div>
