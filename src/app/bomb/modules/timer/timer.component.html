@@ -1,13 +1,23 @@
-<div class="form-group">
-  <small for="strikes" class="col-form-label">Total strikes</small>
-  <input type="number" class="form-control" id="strikes" placeholder="Strike Count" [(ngModel)]="service.total_strikes" min="0" max="2" required #strikes="ngModel" style="width: 30%">
-  <div *ngIf="strikes.invalid" class="invalid-feedback">
-    <div *ngIf="strikes.errors.required" >Total strikes is required</div>
+<div class="col text-center">
+  <div class="row">
+    <div class="form-group">
+      <input  type="number" class="form-control form-control-sm" 
+              id="strikes" placeholder="Strike Count" 
+              [(ngModel)]="service.total_strikes" 
+              min="0" max="2" required 
+              #strikes="ngModel" 
+              style="width: 100%">
+      <small for="strikes" class="form-text text-muted">Total strikes</small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="btn btn-lg btn-outline-primary timer" (click)="timer.toggle()">
+      <a *ngFor="let digit of timer.getDigits()">
+        {{digit.getValue()}}
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="btn btn-lg btn-outline-primary" (click)="timer.toggle()">
-  <a *ngFor="let digit of timer.getDigits()">
-    {{digit.getValue()}}
-  </a>
-</div>
+
+
