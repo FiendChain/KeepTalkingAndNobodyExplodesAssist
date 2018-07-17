@@ -17,21 +17,27 @@
     <!--Input sequence-->
     <div class="d-flex-inline flex-row">
       <div><small><strong>Input</strong></small></div>
-      <div class="btn-group">
+      <div class="btn-group" *ngIf="inputSequence.length">
         <div *ngFor="let colour of inputSequence; let i = index;" 
               class="btn background-{{colour}} input-border"
               (click)="removeInput(i)">
         </div>
       </div>
+      <div *ngIf="!inputSequence.length">
+        <small>No inputs</small>
+      </div>
     </div>
     <!--Output sequence-->
     <div class="d-flex-inline flex-row">
       <div><small><strong>Output</strong></small></div>
-      <div class="btn-group">
+      <div class="btn-group" *ngIf="outputSequence.length">
         <div *ngFor="let colour of outputSequence; let i = index;"  
               class="btn background-{{colour}} input-border"
               (click)="removeInput(i)">
         </div>
+      </div>
+      <div *ngIf="!outputSequence.length">
+        <small>No outputs</small>
       </div>
     </div>
   </div>  
