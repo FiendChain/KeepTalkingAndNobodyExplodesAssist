@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WireConnectionModule } from './wire-component/wire.module';
 
 import { BombService } from "./bomb.service";
-import { BombComponent } from './bomb.component';
+import { BombComponent } from './bomb-component/bomb.component';
 
 import { ButtonComponent } from './modules/button/button.component';
 import { ComplicatedWiresComponent } from './modules/complicated-wires/complicated-wires.component';

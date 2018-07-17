@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "../../../../../../node_modules/@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core"
 import { SquareButton } from "./button.model";
 import { StripLED } from "../strip-component/strip.model";
 import { colourMappings } from "../../../colour-mappings";

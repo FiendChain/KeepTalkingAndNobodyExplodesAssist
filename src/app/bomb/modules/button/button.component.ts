@@ -19,7 +19,7 @@ export class ButtonComponent implements BombModuleInterface {
     public stripAction: string = "";
 
     public totalBatteries: number;
-    public litIndicator: string;
+    public litIndicators: string[] = [];
 
     constructor(
         public service: BombService,
@@ -28,8 +28,8 @@ export class ButtonComponent implements BombModuleInterface {
             this.totalBatteries = totalBatteries;
             this.getInstructions();
         })
-        this.service.litIndicator.subscribe((litIndicator) => {
-            this.litIndicator = litIndicator;
+        this.service.getLitIndicators().subscribe((litIndicators) => {
+            this.litIndicators = litIndicators;
             this.getInstructions();
         })
     }
@@ -49,12 +49,12 @@ export class ButtonComponent implements BombModuleInterface {
             this.buttonAction = immediateReleaseMessage;
         // if button is white and lit indicator is CAR
         // refer to strip
-        } else if(this.litIndicator == "CAR" &&
+        } else if(this.checkIfIndicatorExists("CAR") &&
                   this.button.getColour() == "White") {
             useStrip = true;
         // if more than 2 batteries and lit indicator with FRK
         // immediate release the button
-        } else if(this.litIndicator == "FRK" &&
+        } else if(this.checkIfIndicatorExists("FRK") &&
                   this.totalBatteries > 2) {
             this.buttonAction = immediateReleaseMessage;
         // if button is yellow, refer to strip
@@ -90,6 +90,13 @@ export class ButtonComponent implements BombModuleInterface {
                 this.stripAction = this.getStripAction(1);
             }
         }
+    }
+
+    private checkIfIndicatorExists(text: string): boolean {
+        for(let indicator of this.litIndicators) {
+            if(indicator == text) return true;
+        }
+        return false;
     }
 
     private getStripAction(n: number): string {

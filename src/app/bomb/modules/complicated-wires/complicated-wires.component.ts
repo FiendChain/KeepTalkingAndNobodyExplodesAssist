@@ -52,7 +52,10 @@ export class ComplicatedWiresComponent implements BombModuleInterface {
             this.updateAllWires();
         });
         // change on total parallel ports
-        this.hasParallelPort = true;
+        this.service.getPorts().subscribe((ports) => {
+            this.hasParallelPort = this.checkParallelPort(ports);
+            this.updateAllWires();
+        });
     }
 
     // update all wires
@@ -87,5 +90,15 @@ export class ComplicatedWiresComponent implements BombModuleInterface {
             if(number % 2 == 0) return true;    // even
             else                return false;   // odd
         }
+    }
+
+    // check if has parallel port
+    private checkParallelPort(ports: string[]): boolean {
+        for(let port of ports) {
+            if(port == 'Parallel') {
+                return true;
+            }
+        }
+        return false;
     }
 }

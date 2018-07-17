@@ -26,6 +26,9 @@ export class SimonSaysComponent implements BombModuleInterface {
         });
         // register for changes to total strikes
         this.service.totalStrikes.subscribe((totalStrikes) => {
+            if(totalStrikes == undefined) return;   // ignore not defined
+            if(totalStrikes < 0) totalStrikes = 0;  // limit to positive or zero
+            if(totalStrikes > 2) totalStrikes = 2;  // limit total strikes
             this.totalStrikes = totalStrikes;
             this.recomputeOutputSequence();
         });
