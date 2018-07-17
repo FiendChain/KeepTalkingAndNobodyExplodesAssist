@@ -1,34 +1,37 @@
 <div ngbDropdown #dropdown="ngbDropdown" placement="wire.dropdownPosition">
-  <!--Horizontal wire-->
+  <!--Wire-->
   <div  class="progress" id="colour_list"
+        [ngClass]="{'vertical': wire.isVertical()}"
         ngbDropdownToggle
-        style="height: 20px"
-        *ngIf="!wire.isVertical()">
-    <div  [ngClass]="{'progress-bar-stripped': wire.stripped}"
+        style="height: 20px">
+    <div  [ngClass]="wire.getStripeClass()"
           class="progress-bar background-{{wire.getColour().toLowerCase()}}" 
           style="width: 100%;" role="progressbar"
           *ngIf="wire.isConnected()">
-      <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
-    </div>
-  </div>
-  <!--Vertical wire-->
-  <div  class="progress vertical" id="colour_list"
-        ngbDropdownToggle
-        *ngIf="wire.isVertical()">
-    <div  *ngIf="wire.isConnected()" 
-          [ngClass]="{'progress-bar-stripped': wire.stripped}"
-          class="progress-bar background-{{wire.getColour().toLowerCase()}}" 
-          style="height: 100%; width: 100%" role="progressbar">
-      <span *ngIf="wire.cut && wire.isConnected()">Cut!</span>
+      <div [ngClass]="{'vertical-text': wire.isVertical()}">
+        <ng-container *ngTemplateOutlet="cutLabel; context:{wire:wire}"></ng-container>
+      </div>
     </div>
   </div>
   <!--Dropdown menu-->
   <div ngbDropdownMenu aria-labelledby="colour_list">
     <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setColour(colour); indicateUpdate();">{{colour}}</small>
     <div *ngIf="wire.isConnected()">
+      <!--Stripe colours if toggle enabled-->
+      <div *ngIf="wire.stripped">
+        <div class="dropdown-divider"></div>
+        <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setStripeColour(colour); indicateUpdate();">{{colour}} Stripe</small>
+      </div>
+      <!--Remove wire or disable stripes-->
       <div class="dropdown-divider"></div>
       <small class="dropdown-item" (click)="wire.setColour(); indicateUpdate();">Remove Wire</small>
       <small *ngIf="enableStrippedToggle" class="dropdown-item" (click)="wire.toggleStripped(); indicateUpdate();">Toggle stripped</small>
     </div>
   </div>
 </div>
+
+<ng-template #cutLabel let-wire="wire">
+  <div class="cut-label bg-danger d-inline text-light" *ngIf="wire.cut && wire.isConnected()">
+    <strong>&nbsp;CUT&nbsp;</strong>
+  </div>
+</ng-template>

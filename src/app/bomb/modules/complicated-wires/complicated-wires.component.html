@@ -1,5 +1,13 @@
 <div class="d-flex flex-row">
   <div class="ml-0 mr-2" *ngFor="let wire of wires">
-    <wire-component [wire]=wire></wire-component>
+    <input  class="btn" 
+            type="checkbox" 
+            [(ngModel)]="wire.led" 
+            (ngModelChange)="updateWire(wire)">
+    <wire-component [wire]="wire.wire" (onChange)="updateWire(wire)"></wire-component>
+    <input  class="btn" 
+            type="checkbox" 
+            [(ngModel)]="wire.star" 
+            (ngModelChange)="updateWire(wire)">
   </div>
 </div>
