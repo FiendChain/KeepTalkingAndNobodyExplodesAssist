@@ -19,8 +19,6 @@ import { SquareButtonComponent } from "./button-component/button.component";
         ButtonComponent,
     ],
     entryComponents: [
-        StripLedComponent,
-        SquareButtonComponent,
         ButtonComponent,
     ],
 })

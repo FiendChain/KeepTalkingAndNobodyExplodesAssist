@@ -1,0 +1,14 @@
+.square {
+    min-height: 50px;
+    min-width: 50px;
+    border: 1px solid white !important;
+}
+
+.simon-says {
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+    transform: rotate(-45deg);
+}
+
+.input-border {
+    border: 1px solid white !important;
+}
