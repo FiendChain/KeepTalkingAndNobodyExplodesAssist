@@ -17,6 +17,9 @@ export class BombComponent {
     public litIndicators: string[] = [];
     public ports: string[] = [];
 
+    public maxPorts = maxPorts;
+    public maxIndicators = maxIndicators;
+
     public litIndicatorOptions = litIndicatorList;
     public portOptions = portsList;
 

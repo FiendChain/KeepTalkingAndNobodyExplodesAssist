@@ -2,14 +2,13 @@ import { Injectable } from "@angular/core";
 import { BombModuleSelector } from "./module-selector/module-selector.component";
 import { BombModuleInterface } from "./bomb-module.interface";
 import { BehaviorSubject, Observable } from "rxjs"
+import { maxPorts } from "./bomb-component/ports.data";
+import { maxIndicators } from "./bomb-component/litIndicators.data";
 
 // this will contain base information about the bomb
 // will contain list of components that were selected
 // used as the central repository of data
 // bomb modules can access the list of other components, if needed
-
-const maxPorts: number = 4;
-const maxIndicators: number = 5;
 
 @Injectable()
 export class BombService {
@@ -48,9 +47,7 @@ export class BombService {
 
     public addLitIndicator(name: string): void {
         // if too maany lit indicators show alert
-        if(this.litIndicators.length >= maxIndicators) {
-            alert(`Maximum of ${maxIndicators} lit indicators`);
-        } else{
+        if(this.litIndicators.length < maxIndicators) {
             this.litIndicators.push(name);
             this.litIndicatorsSubject.next(this.litIndicators);
         }
@@ -68,9 +65,7 @@ export class BombService {
 
     public addPort(name: string): void {
         // if too many ports
-        if(this.ports.length >= maxPorts) {
-            alert(`Maximum of ${maxPorts} ports`);
-        } else {
+        if(this.ports.length < maxPorts) {
             this.ports.push(name);
             this.portsSubject.next(this.ports);
         }
