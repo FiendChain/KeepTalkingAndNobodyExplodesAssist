@@ -1,17 +1,22 @@
-<div class="form-group" style="margin-top: 6px;">
+<div class="form-group mb-0" style="margin-top: 6px;">
   <!--Label-->
   <label *ngIf="label" class="form-label">{{label}}</label>
   <div class="input-group">
     <!--Lit indicator list-->
     <div class="btn-group form-control d-inline d-flex" style="height: 38px;">
-      <div  class="btn-primary item" 
-            *ngFor="let item of items; let i = index;"
-            (click)="itemClick(i)">
-        <small>{{item}}&nbsp;&times;</small>
-      </div>
+      <ng-container *ngFor="let item of items; let i = index;">
+        <div class="btn-primary {{getClass(item)}}"
+             (click)="itemClick(i)"
+             [ngClass]="{'item': showClose, 'item-no-close': !showClose}"
+        >
+          <small *ngIf="showClose">{{item}}&nbsp;&times;</small>
+          <small *ngIf="!showClose">{{item}}</small>
+        </div>
+      </ng-container>
+      
     </div>
     <!--Dropdown menu-->
-    <div class="input-group-append d-inline d-flex" ngbDropdown placement="bottom-right"> 
+    <div *ngIf="options" class="input-group-append d-inline d-flex" ngbDropdown placement="bottom-right"> 
       <span class="btn btn-primary" id="basic-addon2" ngbDropdownToggle></span>
       <div ngbDropdownMenu>
         <small  class="dropdown-item" 

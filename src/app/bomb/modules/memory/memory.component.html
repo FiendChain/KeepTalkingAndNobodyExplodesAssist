@@ -1,3 +1,32 @@
-<p>
-  memory works!
-</p>
+<div class="row">
+  <!--Show options-->
+  <div class="col">
+    <div class="btn-group">
+      <div *ngFor="let i of [1,2,3,4]" class="btn btn-sm {{getClass(i)}}" (click)="addInput(i)">
+        {{i}}
+      </div>
+    </div>
+  </div>
+  <!--Inputs-->
+  <div class="col memory-row">
+    <small><strong>Inputs</strong></small>
+    <div interactive-item-list
+      [items]="inputs"
+      [formatting]="buttonFormatting"
+      [showClose]="false"
+      (onItem)="removeIndex($event)"
+    ></div>
+  </div>
+  <!--Outputs-->
+  <div class="col memory-row">
+    <small><strong>Outputs</strong></small>
+    <div interactive-item-list
+      [items]="outputs"
+      (onItem)="removeIndex($event)"
+      [formatting]="buttonFormatting"
+      [showClose]="false"
+    ></div>
+  </div>
+  
+</div>
+
