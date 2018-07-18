@@ -1,3 +1,46 @@
-<p>
-  who-first works!
-</p>
+<!--Dropdown for the display-->
+<div ngbDropdown placement="bottom-right">
+  <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>{{display || 'Select display'}}</button>
+  <div ngbDropdownMenu>
+    <small  class="dropdown-item" 
+            *ngFor="let option of displayOptions" 
+            (click)="setDisplay(option)">
+      {{option}}
+    </small>
+  </div>
+</div>
+<!--Dropdown for the wire-->
+<div class="btn-group-vertical">
+  <div class="btn-group">
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[0], index:0}"></ng-container>
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[1], index:1}"></ng-container>
+  </div>
+  <div class="btn-group">
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[2], index:2}"></ng-container>
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[3], index:3}"></ng-container>
+  </div>
+  <div class="btn-group">
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[4], index:4}"></ng-container>
+    <ng-container *ngTemplateOutlet="labelElement; context:{label:labels[5], index:5}"></ng-container>
+  </div>
+</div>
+
+<ng-template #labelElement let-label="label" let-index="index">
+  <div ngbDropdown placement="bottom-right" class="btn-group">
+    <button 
+      class="btn btn-sm" 
+      [ngClass]="{'btn-primary': !checkIfPress(index), 'btn-danger': checkIfPress(index)}"
+      ngbDropdownToggle
+    >
+      {{label || 'Select label'}}
+    </button>
+    <div ngbDropdownMenu>
+      <small  class="dropdown-item" 
+              *ngFor="let option of labelOptions" 
+              (click)="setLabel(index, option)">
+        {{option}}
+      </small>
+    </div>
+  </div>
+</ng-template>
+
