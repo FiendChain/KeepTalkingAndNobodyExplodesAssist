@@ -21,8 +21,6 @@ export class WireComponent {
     @Input('enableStrippedToggle') enableStrippedToggle: boolean = true;
     @Output('onChange') onChange = new EventEmitter<WireConnection>();
 
-    public colours = colourList;
-
     public indicateUpdate(): void {
         this.onChange.emit(this.wire);
     }

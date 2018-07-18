@@ -1,10 +1,7 @@
-import {  
-    colourList, 
-    defaultColour 
-} from '../colour-mappings';
+import { colourList } from '../colour-mappings';
 
 export class WireConnection {
-    public colours = colourList;
+    public colours: string[] = colourList;
     public dropdownPositon: string;
     public connected: boolean = false;
     public cut: boolean = false;
@@ -38,7 +35,7 @@ export class WireConnection {
             this.colour = colour;
             this.connected = true;
         } else {
-            this.colour = colourList[0];
+            this.colour = this.colours[0];
             this.connected = false;
         }
     }
@@ -49,7 +46,7 @@ export class WireConnection {
             this.stripeColour = colour;
             this.connected = true;
         } else {
-            this.stripeColour = colourList[0];
+            this.stripeColour = this.colours[0];
             this.connected = false;
         }
     }

@@ -1,0 +1,13 @@
+.wire-label {
+    margin-left: 3px;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
+    max-height: 25px;
+}
+
+.wire-element {
+    margin-top: 2.5px;
+    min-width: 150px;
+}

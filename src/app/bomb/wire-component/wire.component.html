@@ -15,18 +15,18 @@
   </div>
   <!--Dropdown menu-->
   <div ngbDropdownMenu aria-labelledby="colour_list">
-    <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setColour(colour); indicateUpdate();">{{colour}}</small>
-    <div *ngIf="wire.isConnected()">
+    <small class="dropdown-item" *ngFor="let colour of wire.colours" (click)="wire.setColour(colour); indicateUpdate();">{{colour}}</small>
+    <ng-container *ngIf="wire.isConnected()">
       <!--Stripe colours if toggle enabled-->
-      <div *ngIf="wire.stripped">
+      <ng-container *ngIf="wire.stripped">
         <div class="dropdown-divider"></div>
-        <small class="dropdown-item" *ngFor="let colour of colours" (click)="wire.setStripeColour(colour); indicateUpdate();">{{colour}} Stripe</small>
-      </div>
+        <small class="dropdown-item" *ngFor="let colour of wire.colours" (click)="wire.setStripeColour(colour); indicateUpdate();">{{colour}} Stripe</small>
+      </ng-container>
       <!--Remove wire or disable stripes-->
       <div class="dropdown-divider"></div>
       <small class="dropdown-item" (click)="wire.setColour(); indicateUpdate();">Remove Wire</small>
       <small *ngIf="enableStrippedToggle" class="dropdown-item" (click)="wire.toggleStripped(); indicateUpdate();">Toggle stripped</small>
-    </div>
+    </ng-container>
   </div>
 </div>
 

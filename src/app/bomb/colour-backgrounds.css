@@ -29,3 +29,8 @@
     background-color: #343a40 !important;
     color: white;
 }
+
+.background-grey {
+    background-color: grey !important;
+    color: white;
+}

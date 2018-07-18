@@ -4,11 +4,12 @@
   <div class="input-group">
     <!--Lit indicator list-->
     <div class="btn-group form-control" style="height: 38px;">
-      <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap" scroll-set="10" style="margin-top: -5px; margin-bottom: -5px;" set-scroll="10">
         <ng-container *ngFor="let item of items; let i = index;">
           <div class="btn-primary {{getClass(item)}}"
               (click)="itemClick(i)"
               [ngClass]="{'item': showClose, 'item-no-close': !showClose}"
+              style="margin-top: 5px; margin-bottom: 5px;"
           >
             <small *ngIf="showClose">{{item}}&nbsp;&times;</small>
             <small *ngIf="!showClose">{{item}}</small>

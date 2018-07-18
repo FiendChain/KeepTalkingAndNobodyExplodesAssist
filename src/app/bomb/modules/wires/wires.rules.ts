@@ -13,7 +13,8 @@ export function checkWires(wires: WireConnection[], lastDigitOdd: boolean): void
     for(let wire of wires) {
         if(wire.isConnected()) {
             totalWires++;
-            colourCount[wire.getColour()].push(wire);
+            let count = colourCount[wire.getColour()]
+            if(count) count.push(wire);
         }
         wire.cut = false;
     }

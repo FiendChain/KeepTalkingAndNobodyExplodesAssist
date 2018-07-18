@@ -1,3 +1,35 @@
-<p>
-  wire-sequence works!
-</p>
+<div class="btn-group" role="group">  
+  <button class="btn btn-sm btn-warning" (click)="setPreviousPanel()">Previous</button>
+  <button class="btn btn-sm btn-success" (click)="setNextPanel()">Next</button>
+</div>
+<div class="mt-2 mb-2">
+  <div class="row ml-1 mb-2" *ngFor="let wire of getCurrentWires()" style="width: 85%">
+    <!--Left number labels-->
+    <div class="d-inline">
+      <div class="wire-label background-blue">
+          <small><strong>{{wire.id}}</strong></small>
+      </div>
+    </div>
+    <!--Wire component-->
+    <div class="mr-1 ml-1 wire-element">
+      <wire-component [wire]="wire" [enableStrippedToggle]="false" (onChange)="updateCuts()"></wire-component>
+    </div>
+    <!--Right ABC labels-->
+    <div class="d-inline" ngbDropdown placement="bottom-right">
+      <div class="wire-label {{getWireClass(wire.symbol)}}" ngbDropdownToggle>
+        <small><strong>{{wire.symbol || "?"}}</strong></small>
+      </div>
+      <div ngbDropdownMenu>
+        <ng-container *ngFor="let symbol of symbols">
+          <small 
+            class="dropdown-item" 
+            *ngIf="symbol != wire.symbol"
+            (click)="wire.symbol=symbol; updateCuts();"
+            >
+            {{symbol}}
+          </small>
+        </ng-container>       
+      </div>
+    </div>
+  </div>
+</div>
