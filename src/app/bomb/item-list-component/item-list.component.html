@@ -3,17 +3,18 @@
   <label *ngIf="label" class="form-label">{{label}}</label>
   <div class="input-group">
     <!--Lit indicator list-->
-    <div class="btn-group form-control d-inline d-flex" style="height: 38px;">
-      <ng-container *ngFor="let item of items; let i = index;">
-        <div class="btn-primary {{getClass(item)}}"
-             (click)="itemClick(i)"
-             [ngClass]="{'item': showClose, 'item-no-close': !showClose}"
-        >
-          <small *ngIf="showClose">{{item}}&nbsp;&times;</small>
-          <small *ngIf="!showClose">{{item}}</small>
-        </div>
-      </ng-container>
-      
+    <div class="btn-group form-control" style="height: 38px;">
+      <div class="d-flex flex-wrap">
+        <ng-container *ngFor="let item of items; let i = index;">
+          <div class="btn-primary {{getClass(item)}}"
+              (click)="itemClick(i)"
+              [ngClass]="{'item': showClose, 'item-no-close': !showClose}"
+          >
+            <small *ngIf="showClose">{{item}}&nbsp;&times;</small>
+            <small *ngIf="!showClose">{{item}}</small>
+          </div>
+        </ng-container>
+      </div>
     </div>
     <!--Dropdown menu-->
     <div *ngIf="options" class="input-group-append d-inline d-flex" ngbDropdown placement="bottom-right"> 

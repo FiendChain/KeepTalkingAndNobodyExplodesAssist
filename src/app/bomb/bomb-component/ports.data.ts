@@ -7,4 +7,4 @@ export const portsList: string[] = [
     'Stereo',
 ];
 
-export const maxPorts: number = 4;
+export const maxPorts: number = 20;

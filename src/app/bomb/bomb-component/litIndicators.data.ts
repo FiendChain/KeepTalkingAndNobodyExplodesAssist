@@ -12,4 +12,4 @@ export const litIndicatorList: string[] = [
     "TRN",
 ]
 
-export const maxIndicators: number = 5;
+export const maxIndicators: number = 20;

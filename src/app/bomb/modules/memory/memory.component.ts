@@ -54,7 +54,6 @@ export class MemoryComponent implements BombModuleInterface {
             }
         }
         this.buttons[index] = newValue;
-        this.recomputeOutput();
     }
 
     // if input list was changed, recompute new output sequence
