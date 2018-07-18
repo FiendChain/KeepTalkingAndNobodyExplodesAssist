@@ -4,7 +4,7 @@
   <div class="form-group col-sm">
     <label for="serial" class="col-form-label">Serial</label>
     <input  type="text" class="form-control" id="serial" placeholder="Serial" 
-            ngModel (ngModelChange)="service.serial.next($event)" 
+            ngModel (ngModelChange)="service.setSerial($event)" 
             required #serial="ngModel">
     <div *ngIf="serial.invalid" class="invalid-feedback">
       <div *ngIf="serial.errors.required" >Serial is required</div>
