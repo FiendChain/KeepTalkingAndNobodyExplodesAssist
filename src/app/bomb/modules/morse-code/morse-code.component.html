@@ -1,3 +1,23 @@
-<p>
-  morse-code works!
-</p>
+<!--Transmit the morse-->
+<div class="btn-group">
+  <div class="btn btn-sm btn-outline-primary" (click)="sendMorse('-')">Dash</div>
+  <div class="btn btn-sm btn-outline-danger" (click)="sendMorse('.')">Dot</div>
+  <div class="btn btn-sm btn-success" (click)="sendMorse(' ')">Space</div>
+</div>
+
+<!--Show the current morse code-->
+<div interactive-item-list
+  [items]="morseCodeBuffer.split('')"
+  [showClose]="false"
+  (onItem)="removeMorse($event)"
+></div>
+
+<!--Show the current word-->
+<div interactive-item-list
+  [items]="word.split('')"
+  [showClose]="false"
+  (onItem)="removeLetter($event)"
+></div>
+
+<!--Show the frequency-->
+<strong>Frequency: </strong><a>{{frequency || "???"}} MHz</a>
