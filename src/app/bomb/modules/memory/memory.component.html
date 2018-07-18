@@ -1,31 +1,55 @@
-<div class="row">
+<div class="col">
   <!--Show options-->
-  <div class="col">
-    <div class="btn-group">
-      <div *ngFor="let i of [1,2,3,4]" class="btn btn-sm {{getClass(i)}}" (click)="addInput(i)">
-        {{i}}
+  <div class="row">
+    <div class="btn-group" ngDropDown placement="bottom-right">
+      <!--Button row-->
+      <div class="btn-group" *ngFor="let button of buttons; let i = index">
+        <!--Button-->
+        <button class="btn btn-sm {{getClass(button)}}" (click)="addInput(button)">
+          {{button}}
+        </button>
+        <!--Dropdown menu-->
+        <div class="btn-group" ngbDropdown role="group">
+          <button class="btn btn-sm {{getDropdownClass(button)}} dropdown-toggle" ngbDropdownToggle></button>
+          <div ngbDropdownMenu>
+            <ng-container *ngFor="let option of [1,2,3,4]">
+              <small class="dropdown-item" *ngIf="option != button" (click)="setButton(i, option)">{{option}}</small>
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <!--Inputs-->
-  <div class="col memory-row">
-    <small><strong>Inputs</strong></small>
-    <div interactive-item-list
-      [items]="inputs"
-      [formatting]="buttonFormatting"
-      [showClose]="false"
-      (onItem)="removeIndex($event)"
-    ></div>
-  </div>
-  <!--Outputs-->
-  <div class="col memory-row">
-    <small><strong>Outputs</strong></small>
-    <div interactive-item-list
-      [items]="outputs"
-      (onItem)="removeIndex($event)"
-      [formatting]="buttonFormatting"
-      [showClose]="false"
-    ></div>
+  <div class="row">
+    <!--Inputs-->
+    <div class="memory-row mr-2">
+      <small><strong>Inputs</strong></small>
+      <div interactive-item-list
+        [items]="inputs"
+        [formatting]="buttonFormatting"
+        [showClose]="false"
+        (onItem)="removeIndex($event)"
+      ></div>
+    </div>
+    <!--Outputs-->
+    <div class="memory-row">
+      <small><strong>Outputs</strong></small>
+      <div interactive-item-list
+        [items]="outputs"
+        (onItem)="removeIndex($event)"
+        [formatting]="buttonFormatting"
+        [showClose]="false"
+      ></div>
+    </div>
+    <!--Help text-->
+    <div class="mt-2 mb-0">
+      <small>
+        <p class="mb-0">
+          Set the buttons to the bomb's buttons, 
+          then start inserting the input sequence.
+        </p>
+      </small>
+    </div>
   </div>
   
 </div>
