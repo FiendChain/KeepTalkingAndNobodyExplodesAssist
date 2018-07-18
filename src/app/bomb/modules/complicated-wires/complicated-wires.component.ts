@@ -42,12 +42,12 @@ export class ComplicatedWiresComponent implements BombModuleInterface {
     // subscribe to the bomb server
     private subscribeService(): void {
         // change on total batteries
-        this.service.totalBatteries.subscribe((totalBatteries) => {
+        this.service.getTotalBatteries().subscribe((totalBatteries) => {
             this.totalBatteries = totalBatteries;
             this.updateAllWires();
         });
         // change on serial
-        this.service.serial.subscribe((serial) => {
+        this.service.getSerial().subscribe((serial) => {
             this.lastDigitSerialEven = this.checkLastDigitSerialEven(serial);
             this.updateAllWires();
         });

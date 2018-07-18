@@ -23,8 +23,8 @@ export class TimerComponent implements BombModuleInterface {
     constructor(
         public service: BombService,
     ) { 
-        this.service.totalStrikes.subscribe((totalStrikes: number) => {
+        this.service.getTotalStrikes().subscribe((totalStrikes) => {
             this.totalStrikes = totalStrikes;
-        })
+        });
     }
 }

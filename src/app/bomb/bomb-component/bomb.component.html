@@ -14,64 +14,30 @@
   <div class="form-group col-sm-2">
     <label for="serial" class="col-form-label">Total batteries</label>
     <input  type="number" class="form-control" id="battery" placeholder="Battery Count" 
-            [ngModel]="totalBatteries" (ngModelChange)="service.totalBatteries.next($event)" 
+            [ngModel]="totalBatteries" (ngModelChange)="service.setTotalBatteries($event)" 
             min="0" max="5" required #batteries="ngModel">
     <div *ngIf="batteries.invalid" class="invalid-feedback">
       <div *ngIf="batteries.errors.required" >Battery count is required</div>
     </div>
   </div>
   <!--Lit indicators-->
-  <div class="form-group col-sm" style="margin-top: 6px;">
-    <label class="form-label">Lit Indicators</label>
-    <div class="input-group">
-      <!--Lit indicator list-->
-      <div class="btn-group form-control d-inline d-flex" style="height: 38px;">
-        <div  class="btn-primary tab-indicator" 
-              *ngFor="let indicator of litIndicators; let i = index;"
-              (click)="service.removeLitIndicator(i)">
-          <small>{{indicator}}&nbsp;&times;</small>
-        </div>
-      </div>
-      <!--Dropdown menu-->
-      <div class="input-group-append d-inline d-flex" ngbDropdown placement="bottom-right"> 
-        <span class="btn btn-primary" id="basic-addon2" ngbDropdownToggle></span>
-        <div ngbDropdownMenu>
-          <small  class="dropdown-item" 
-                  *ngFor="let option of litIndicatorOptions" 
-                  (click)="service.addLitIndicator(option)">
-            {{option}}
-          </small>
-        </div>
-      </div>
-    </div>
-    <small class="form-text text-muted">Max {{maxIndicators}} indicators</small>
-  </div>
+  <div interactive-item-list class="col-sm"
+    [items]="litIndicators"
+    [options]="litIndicatorOptions"
+    [label]="'Lit Indicators'"
+    [text]="'Max '+maxIndicators+' indicators'"
+    (onItem)="service.removeLitIndicator($event)"
+    (onOption)="service.addLitIndicator($event)"
+  ></div>
   <!--Port list-->
-  <div class="form-group col-sm" style="margin-top: 6px;">
-    <label class="form-label">Ports</label>
-    <div class="input-group">
-      <!--Port list-->
-      <div class="btn-group form-control d-inline d-flex" style="height: 38px;">
-        <div  class="btn-primary tab-indicator" 
-              *ngFor="let port of ports; let i = index;"
-              (click)="service.removePort(i)">
-          <small>{{port}}&nbsp;&times;</small>
-        </div>
-      </div>
-      <!--Dropdown menu-->
-      <div class="input-group-append d-inline d-flex" ngbDropdown placement="bottom-right"> 
-        <span class="btn btn-primary" id="basic-addon2" ngbDropdownToggle></span>
-        <div ngbDropdownMenu>
-          <small  class="dropdown-item" 
-                  *ngFor="let option of portOptions" 
-                  (click)="service.addPort(option)">
-            {{option}}
-          </small>
-        </div>
-      </div>
-    </div>
-    <small class="form-text text-muted">Max {{maxPorts}} ports</small>
-  </div>
+  <div interactive-item-list class="col-sm" 
+    [items]="ports"
+    [options]="portOptions"
+    [label]="'Ports'"
+    [text]="'Max '+maxPorts+' ports'"
+    (onItem)="service.removePort($event)"
+    (onOption)="service.addPort($event)"
+  ></div>
 </div>
 
 <h3>Front</h3>

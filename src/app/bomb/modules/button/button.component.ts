@@ -24,7 +24,7 @@ export class ButtonComponent implements BombModuleInterface {
     constructor(
         public service: BombService,
     ) {
-        this.service.totalBatteries.subscribe((totalBatteries) => {
+        this.service.getTotalBatteries().subscribe((totalBatteries) => {
             this.totalBatteries = totalBatteries;
             this.getInstructions();
         })

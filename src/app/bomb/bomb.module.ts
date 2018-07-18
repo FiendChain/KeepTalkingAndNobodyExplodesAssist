@@ -26,6 +26,7 @@ import { BombModuleSelector } from './module-selector/module-selector.component'
 import { BombModuleContainer } from './module-selector/module-container.directive';
 import { TimerComponent } from './modules/timer/timer.component';
 import { BombButtonModule } from './modules/button/button.module';
+import { ItemListModule } from './item-list-component/item-list.module';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { BombButtonModule } from './modules/button/button.module';
         BombButtonModule,
         BrowserModule,
         FormsModule,
+        ItemListModule,
         NgbModule,
         WireConnectionModule,
     ],

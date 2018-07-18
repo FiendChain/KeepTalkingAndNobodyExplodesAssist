@@ -26,7 +26,7 @@ export class BombComponent {
     constructor(
         public service: BombService,
     ) {
-        this.service.totalBatteries.subscribe((totalBatteries) => {
+        this.service.getTotalBatteries().subscribe((totalBatteries) => {
             this.totalBatteries = totalBatteries;
         });
         this.service.getLitIndicators().subscribe((litIndicators) => {

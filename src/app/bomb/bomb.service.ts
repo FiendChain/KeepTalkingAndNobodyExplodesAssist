@@ -12,32 +12,73 @@ import { maxIndicators } from "./bomb-component/litIndicators.data";
 
 @Injectable()
 export class BombService {
-    private modules: BombModuleSelector[] = [];
-    public serial = new BehaviorSubject<string>("");
-    public totalBatteries = new BehaviorSubject<number>(0);
-    public totalStrikes = new BehaviorSubject<number>(0);
+    // observables to listen to
+    private serialSubject = new BehaviorSubject<string>("");
+    private modulesSubject = new BehaviorSubject<BombModuleInterface[]>([]);
+    private totalBatteriesSubject = new BehaviorSubject<number>(0);
+    private totalStrikesSubject = new BehaviorSubject<number>(0);
     private litIndicatorsSubject = new BehaviorSubject<string[]>([]);
     private portsSubject = new BehaviorSubject<string[]>([]);
 
+    // internal bomb data
+    private modules: BombModuleSelector[] = [];
+    private serial: string = "";
+    private totalBatteries: number = 0;
+    private totalStrikes: number = 0;
     private litIndicators: string[] = [];
     private ports: string[] = [];
 
+    // timeouts to prevent too many changes from happening
+    private serialTimeout: any;
+
     constructor() {}
+
+    // set and get serial number
+    public getSerial(): Observable<string> {
+        return this.serialSubject.asObservable();
+    }
+
+    public setSerial(serial: string): void {
+        clearTimeout(this.serialTimeout);
+        this.serialTimeout = setTimeout(() => {
+            this.serial = serial;
+            this.serialSubject.next(serial);
+        }, 500);
+    }
 
     // add and remove modules
     public addModule(bombModule: BombModuleSelector): void {
         this.modules.push(bombModule);
+        // update the modules to subscribers
+        var modules: BombModuleInterface[] = [];
+        for(let module of this.modules) {
+            modules.push(module.getModule());
+        }
+        this.modulesSubject.next(modules);
     }
 
-    public getModules(): BombModuleInterface[] {
-        var modules: BombModuleInterface[] = [];
-        for(let bombModule of this.modules) {
-            var actualBombModule: BombModuleInterface = bombModule.getModule();
-            if(actualBombModule) {
-                modules.push(actualBombModule);    
-            }
-        }
-        return modules;
+    public getModules(): Observable<BombModuleInterface[]> {
+        return this.modulesSubject.asObservable();
+    }
+
+    // total batteries subscriber
+    public getTotalBatteries(): Observable<number> {
+        return this.totalBatteriesSubject.asObservable();
+    }
+
+    public setTotalBatteries(totalBatteries: number): void {
+        this.totalBatteries = totalBatteries;
+        this.totalBatteriesSubject.next(totalBatteries);
+    }
+
+    // add total strikes subscriber
+    public getTotalStrikes(): Observable<number> {
+        return this.totalStrikesSubject.asObservable();
+    }
+
+    public setTotalStrikes(totalStrikes: number): void {
+        this.totalStrikes = totalStrikes;
+        this.totalStrikesSubject.next(totalStrikes);
     }
 
     // modify lit indicators

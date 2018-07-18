@@ -30,7 +30,7 @@ export class WiresComponent implements BombModuleInterface {
     }
 
     private subscribeService(): void {
-        this.service.serial.subscribe((serial: string) => {
+        this.service.getSerial().subscribe((serial: string) => {
             this.lastDigitSerialOdd = this.checkLastDigitSerialOdd(serial);
             this.updateWires();
         });
