@@ -3,6 +3,7 @@ import { TimerComponent } from "../modules/timer/timer.component";
 // regular modules
 import { ButtonComponent } from "../modules/button/button.component";
 import { ComplicatedWiresComponent } from "../modules/complicated-wires/complicated-wires.component";
+import { KeypadComponent } from "../modules/keypad/keypad.component";
 import { MazeComponent } from "../modules/maze/maze.component";
 import { MemoryComponent } from "../modules/memory/memory.component";
 import { MorseCodeComponent } from "../modules/morse-code/morse-code.component";
@@ -17,13 +18,12 @@ import { GasComponent } from "../needy-modules/gas/gas.component";
 import { KnobComponent } from "../needy-modules/knob/knob.component";
 import { BombModuleInterface } from "../bomb-module.interface";
 
-
-
 // module list
 export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>()
     // Name of module in dropdown menu, Component 
     .set("Buttons", ButtonComponent)
     .set("Complicated Wires", ComplicatedWiresComponent)
+    .set("Keypad", KeypadComponent)
     .set("Maze", MazeComponent)
     .set("Memory", MemoryComponent)
     .set("Morse Code", MorseCodeComponent)
