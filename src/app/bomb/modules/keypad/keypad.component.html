@@ -1,12 +1,12 @@
 <!--The four buttons-->
 <div class="btn-group-vertical">
   <div class="btn-group">
-    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[0], index:0}"></ng-container>
-    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[1], index:1}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[0], index:0, placement:'bottom-left'}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[1], index:1, placement:'bottom-right'}"></ng-container>
   </div>
   <div class="btn-group">
-    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[2], index:2}"></ng-container>
-    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[3], index:3}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[2], index:2, placement:'bottom-left'}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[3], index:3, placement:'bottom-right'}"></ng-container>
   </div>
 </div>
 
@@ -19,8 +19,8 @@
 </div>
 
 <!--A keypad button-->
-<ng-template #keypadButton let-symbol="symbol" let-index="index">
-  <div ngbDropdown placement="bottom-right" class="btn-group">
+<ng-template #keypadButton let-symbol="symbol" let-index="index" let-placement="placement">
+  <div ngbDropdown placement="{{placement}}" class="btn-group">
     <button 
       class="btn btn-md btn-outline-primary" 
       ngbDropdownToggle
