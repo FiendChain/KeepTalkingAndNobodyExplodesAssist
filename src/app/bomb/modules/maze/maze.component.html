@@ -1,3 +1,10 @@
-<p class="text-danger">
-  Maze WIP
-</p>
+<div style="width: 70%">
+  <div class="row" *ngFor="let row of [1,2,3,4,5,6]">
+    <div class="col-sm-0 ml-2" *ngFor="let col of [1,2,3,4,5,6]">
+      <input type="checkbox" [checked]="checkPosition(col, row)" (click)="setPosition(col, row)">
+    </div>
+  </div>
+</div>  
+  
+
+<img *ngIf="mazeFilename" src="{{mazeFilename}}" alt="Couldn't find maze file {{mazeFilename}}">
