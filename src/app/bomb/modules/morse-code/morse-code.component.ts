@@ -12,6 +12,7 @@ export class MorseCodeComponent implements BombModuleInterface {
     public word: string = "";
     public frequency: number = null;
     public morseCodeBuffer: string = "";
+    public morseCodeFormatting = morseCodeFormatting;
 
     constructor() { }
 
@@ -64,7 +65,9 @@ export class MorseCodeComponent implements BombModuleInterface {
     private spliceString(str, index, count, add="") {
         return str.slice(0,index)+add+str.slice(index+count);
     }
+}
 
-
-
+const morseCodeFormatting = {
+    '.': 'btn-danger',
+    '-': 'btn-primary',
 }
