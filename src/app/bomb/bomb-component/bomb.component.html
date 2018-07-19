@@ -11,7 +11,7 @@
     </div>
   </div>
   <!--Total batteries-->
-  <div class="form-group col-sm-2">
+  <div class="form-group col-sm-2" style="min-width: 100px">
     <label for="serial" class="col-form-label">Total batteries</label>
     <input  type="number" class="form-control" id="battery" placeholder="Battery Count" 
             [ngModel]="totalBatteries" (ngModelChange)="service.setTotalBatteries($event)" 

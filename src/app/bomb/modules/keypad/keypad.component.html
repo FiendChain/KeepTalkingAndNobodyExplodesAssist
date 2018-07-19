@@ -1,1 +1,48 @@
-<p class="text-danger">Keypad WIP</p>
+<!--The four buttons-->
+<div class="btn-group-vertical">
+  <div class="btn-group">
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[0], index:0}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[1], index:1}"></ng-container>
+  </div>
+  <div class="btn-group">
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[2], index:2}"></ng-container>
+    <ng-container *ngTemplateOutlet="keypadButton; context:{symbol:keypad[3], index:3}"></ng-container>
+  </div>
+</div>
+
+<!--Get the predicted sequence-->
+<div *ngIf="sequence">
+  <div interactive-item-list
+    [items]="sequence"
+    [showClose]="false"
+  ></div>
+</div>
+
+<!--A keypad button-->
+<ng-template #keypadButton let-symbol="symbol" let-index="index">
+  <div ngbDropdown placement="bottom-right" class="btn-group">
+    <button 
+      class="btn btn-md btn-outline-primary" 
+      ngbDropdownToggle
+    >
+      {{symbol || 'Select'}}
+    </button>
+    <div ngbDropdownMenu>
+      <div 
+        class="dropdown-item" 
+        *ngFor="let option of options" 
+        (click)="setKeypad(index, option)"
+      >
+        {{option}}
+      </div>
+      <div class="dropdown-divider"></div>
+      <!--Option to clear it-->
+      <div 
+        class="dropdown-item"
+        (click)="setKeypad(index, null)"
+      >
+        None
+      </div>
+    </div>
+  </div>
+</ng-template>
