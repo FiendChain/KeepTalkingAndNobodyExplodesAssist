@@ -5,8 +5,8 @@ export interface BombLayoutInterface {
 
 export var BombLayout: BombLayoutInterface = {
     "front": [
-        ["Timer", "Buttons", "Wire Sequence"],
-        ["Complicated Wires", "Simon Says", null],
+        ["Timer", null, null],
+        [null, null, null],
     ],
     "back": [
         [null, null, null],
