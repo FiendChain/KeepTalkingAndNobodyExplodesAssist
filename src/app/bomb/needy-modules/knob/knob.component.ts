@@ -13,8 +13,6 @@ export class KnobComponent implements BombModuleInterface {
     public ledState: LedState = [];
     public possibleMoves: string[] = [];
 
-    private recheckTimeout: any;
-
     constructor() { 
         this.initLedState();
     }
@@ -25,16 +23,19 @@ export class KnobComponent implements BombModuleInterface {
         }
     }
 
-    public setLedState(index: number, state: boolean): void {
-        this.ledState[index] = state;
+    public getLed(index: number): boolean {
+        return <boolean>this.ledState[index];
+    }
+
+    public toggleLed(index: number): void {
+        this.ledState[index] = !this.ledState[index];
         this.recheckPositions();
     }
 
     public recheckPositions(): void {
-        clearTimeout(this.recheckTimeout);
-        this.recheckTimeout = setTimeout(() => {
+        setTimeout(() => {
             this.possibleMoves = getPossibleMoves(this.ledState);
-        }, 600);
+        }, 0);
         
     }
 

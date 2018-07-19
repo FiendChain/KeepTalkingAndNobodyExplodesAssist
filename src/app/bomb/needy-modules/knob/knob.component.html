@@ -1,17 +1,10 @@
-<!-- <div class="row" *ngFor="let led of ledState.slice(0, 6); let i = index;">
-  <input type="checkbox" [checked]="led" (change)="setLedState(i, $event);">
-</div>
-<div class="row" *ngFor="let led of ledState.slice(6); let i = index+6;">
-  <input type="checkbox" [checked]="led" (change)="setLedState(i, $event);">
-</div> -->
-
-<div>
-  <input class="btn mr-1 mb-1"
-    *ngFor="let led of ledState; let i = index;"
-    type="checkbox" 
-    [checked]="ledState[i]" 
-    (change)="setLedState(i, !led)">
-</div>
+<div style="width: 70%">
+  <div class="row" *ngFor="let row of [0,1]">
+    <div class="col-sm-0 ml-2" *ngFor="let col of [0,1,2,3,4,5]">
+      <input type="checkbox" [checked]="getLed(row*6 + col)" (click)="toggleLed(row*6 + col)">
+    </div>
+  </div>
+</div>  
 
 <div interactive-item-list
   [items]="possibleMoves"
