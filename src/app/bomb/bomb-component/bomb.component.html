@@ -4,25 +4,24 @@
   <div class="form-group col-sm">
     <label for="serial" class="col-form-label">Serial</label>
     <input  type="text" class="form-control" id="serial" placeholder="Serial" 
-            ngModel (ngModelChange)="service.setSerial($event)" 
+            ngModel (ngModelChange)="service.serial = $event" 
             required #serial="ngModel">
     <div *ngIf="serial.invalid" class="invalid-feedback">
       <div *ngIf="serial.errors.required" >Serial is required</div>
     </div>
   </div>
   <!--Total batteries-->
-  <div class="form-group col-sm-2" style="min-width: 100px">
-    <label for="serial" class="col-form-label">Total batteries</label>
-    <input  type="number" class="form-control" id="battery" placeholder="Battery Count" 
-            [ngModel]="totalBatteries" (ngModelChange)="service.setTotalBatteries($event)" 
-            min="0" max="5" required #batteries="ngModel">
-    <div *ngIf="batteries.invalid" class="invalid-feedback">
-      <div *ngIf="batteries.errors.required" >Battery count is required</div>
-    </div>
-  </div>
+  <div interactive-item-list class="col-sm"
+    [items]="service.batteries$ | async"
+    [options]="batteryOptions"
+    [label]="'Batteries'"
+    [text]="'Max '+maxBatteries+' batteries'"
+    (onItem)="service.removeBattery($event)"
+    (onOption)="service.addBattery($event)"
+  ></div>
   <!--Lit indicators-->
   <div interactive-item-list class="col-sm"
-    [items]="litIndicators"
+    [items]="service.litIndicators$ | async"
     [options]="litIndicatorOptions"
     [label]="'Lit Indicators'"
     [text]="'Max '+maxIndicators+' indicators'"
@@ -31,7 +30,7 @@
   ></div>
   <!--Port list-->
   <div interactive-item-list class="col-sm" 
-    [items]="ports"
+    [items]="service.ports$ | async"
     [options]="portOptions"
     [label]="'Ports'"
     [text]="'Max '+maxPorts+' ports'"

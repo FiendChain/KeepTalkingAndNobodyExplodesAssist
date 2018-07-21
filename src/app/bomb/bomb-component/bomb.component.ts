@@ -3,6 +3,7 @@ import { BombService } from "../bomb.service";
 import { BombLayout, BombLayoutInterface } from "./bomb-layout.component";
 import { litIndicatorList, maxIndicators } from "./litIndicators.data";
 import { portsList, maxPorts } from "./ports.data";
+import { batteriesList, maxBatteries } from "./batteries.data";
 
 @Component({
     selector: 'bomb-component',
@@ -13,27 +14,18 @@ import { portsList, maxPorts } from "./ports.data";
 })
 export class BombComponent {
     public bombLayout: BombLayoutInterface = BombLayout;
-    public totalBatteries: number = 0;
-    public litIndicators: string[] = [];
-    public ports: string[] = [];
+
+    public maxBatteries = maxBatteries;
+    public batteryOptions = batteriesList;
 
     public maxPorts = maxPorts;
-    public maxIndicators = maxIndicators;
-
-    public litIndicatorOptions = litIndicatorList;
     public portOptions = portsList;
+
+    public maxIndicators = maxIndicators;
+    public litIndicatorOptions = litIndicatorList;
+
 
     constructor(
         public service: BombService,
-    ) {
-        this.service.getTotalBatteries().subscribe((totalBatteries) => {
-            this.totalBatteries = totalBatteries;
-        });
-        this.service.getLitIndicators().subscribe((litIndicators) => {
-            this.litIndicators = litIndicators;
-        });
-        this.service.getPorts().subscribe((ports) => {
-            this.ports = ports;
-        });
-    }
+    ) {}
 }
