@@ -4,8 +4,8 @@ Created when I watched RTGames struggle with **Keep Talking and Nobody Explodes*
 
 Visit at: https://fiendchain.github.io/KeepTalkingAndNobodyExplodesAssist/
 
+## Possible improvements
 All bomb modules are functional, however the interface is abit clunky for a few modules.
-
 | Module | Issue | Solutions? |
 | --- | --- | --- |
 | Knobs | Looks | Use bootstrap buttons to make a good looking grid |
