@@ -17,11 +17,12 @@ import { CapacitorComponent } from "../needy-modules/capacitor/capacitor.compone
 import { GasComponent } from "../needy-modules/gas/gas.component";
 import { KnobComponent } from "../needy-modules/knob/knob.component";
 import { BombModuleInterface } from "../bomb-module.interface";
+import { Component } from "../../../../node_modules/@angular/compiler/src/core";
 
 // module list
-export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>()
+export const bombModules = new Map<string, Component & BombModuleInterface>()
     // Name of module in dropdown menu, Component 
-    .set("Buttons", ButtonComponent)
+    .set("Button", ButtonComponent)
     .set("Complicated Wires", ComplicatedWiresComponent)
     .set("Keypad", KeypadComponent)
     .set("Maze", MazeComponent)
@@ -37,6 +38,13 @@ export var bombModules: Map<string, any> = new Map<string, BombModuleInterface>(
     .set("Capacitor", CapacitorComponent)
     .set("Gas", GasComponent)
     .set("Knobs", KnobComponent);
+
+// dependency list
+export const bombModuleDependencies = new Map<string, string[]>()
+    .set("Button", ["Total batteries", "Lit Indicators"])
+    .set("Wires", ["If last digit of serial is odd"])
+    .set("Simon Says", ["If serial has vowels", "Total strikes"])
+    .set("Complicated Wires", ["If last digit of serial is even", "If there is a parallel port", "Total batteries"]);
 
 // possible names for dropdown list
 export var bombModuleNames: string[] = Array.from(bombModules.keys());

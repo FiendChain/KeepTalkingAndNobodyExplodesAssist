@@ -1,46 +1,42 @@
-<div class="d-flex flex-row mt-2">
-  <!--Simon says button-->
-  <div class="d-flex-inline flex-row m-3">
-    <div class="btn-group-vertical simon-says">
-      <div class="d-flex-inline flex-row mr-0 btn-group">
-        <div class="btn background-red square"    (click)="addSequence('red')"></div>
-        <div class="btn background-blue square"   (click)="addSequence('blue')"></div>
-      </div>
-      <div class="d-flex-inline flex-row mr-0 btn-group">
-        <div class="btn background-green square"  (click)="addSequence('green')"></div>
-        <div class="btn background-yellow square" (click)="addSequence('yellow')"></div>
-      </div>
+<!--Simon says button-->
+  <div class="btn-group-vertical simon-says mt-3 ml-3">
+    <div class="d-flex-inline mr-0 btn-group">
+      <div class="btn background-red square"    (click)="addSequence('red')"></div>
+      <div class="btn background-blue square"   (click)="addSequence('blue')"></div>
+    </div>
+    <div class="d-flex-inline mr-0 btn-group">
+      <div class="btn background-green square"  (click)="addSequence('green')"></div>
+      <div class="btn background-yellow square" (click)="addSequence('yellow')"></div>
     </div>
   </div>
-  <!--Seqeunce pairs-->      
-  <div class="d-flex-inline flex-row ml-2 mt-3">
-    <!--Input sequence-->
-    <div class="d-flex-inline flex-row">
-      <div><small><strong>Input</strong></small></div>
-      <div class="btn-group" *ngIf="inputSequence.length">
-        <div *ngFor="let colour of inputSequence; let i = index;" 
-              class="btn background-{{colour}} input-border"
-              (click)="removeInput(i)">
-        </div>
-      </div>
-      <div *ngIf="!inputSequence.length">
-        <small>No inputs</small>
+<!--Seqeunce pairs-->      
+<div class="d-inline flex-row ml-2 mt-3">
+  <!--Input sequence-->
+  <div class="d-flex-inline flex-row">
+    <div><small><strong>Input</strong></small></div>
+    <div class="btn-group" *ngIf="inputSequence.length">
+      <div *ngFor="let colour of inputSequence; let i = index;" 
+            class="btn background-{{colour}} input-border"
+            (click)="removeInput(i)">
       </div>
     </div>
-    <!--Output sequence-->
-    <div class="d-flex-inline flex-row">
-      <div><small><strong>Output</strong></small></div>
-      <div class="btn-group" *ngIf="outputSequence.length">
-        <div *ngFor="let colour of outputSequence; let i = index;"  
-              class="btn background-{{colour}} input-border"
-              (click)="removeInput(i)">
-        </div>
-      </div>
-      <div *ngIf="!outputSequence.length">
-        <small>No outputs</small>
+    <div *ngIf="!inputSequence.length">
+      <small>No inputs</small>
+    </div>
+  </div>
+  <!--Output sequence-->
+  <div class="d-flex-inline flex-row">
+    <div><small><strong>Output</strong></small></div>
+    <div class="btn-group" *ngIf="outputSequence.length">
+      <div *ngFor="let colour of outputSequence; let i = index;"  
+            class="btn background-{{colour}} input-border"
+            (click)="removeInput(i)">
       </div>
     </div>
-  </div>  
-</div>
+    <div *ngIf="!outputSequence.length">
+      <small>No outputs</small>
+    </div>
+  </div>
+</div>  
 
   

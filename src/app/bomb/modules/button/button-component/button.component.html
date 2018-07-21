@@ -2,11 +2,11 @@
 <div class="btn-group mr-3">
   <!--Selector for colour-->
   <div class="btn-group" ngbDropdown role="group">
-    <button [ngClass]="getSelectorClasses()" class="btn btn-sm" id="button-colours" ngbDropdownToggle>
-      {{button.getColour()}}
+    <button class="btn btn-sm {{selectorClass}} dropdown-toggle" id="button-colours" ngbDropdownToggle>
+      {{button.colour}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-colours">
-      <small class="dropdown-item" *ngFor="let colour of button.colours" (click)="button.setColour(colour); indicateChange(button);">
+      <small class="dropdown-item" *ngFor="let colour of button.colours" (click)="button.colour = colour; indicateChange(button);">
         {{colour}}
       </small>
     </div>
@@ -14,10 +14,10 @@
   <!--Button Text-->
   <div class="btn-group" ngbDropdown role="group">
     <button class="btn btn-outline-primary btn-sm" id="button-text" ngbDropdownToggle>
-      {{button.getText()}}
+      {{button.text}}
     </button>
     <div ngbDropdownMenu aria-labelledby="button-text">
-      <small class="dropdown-item" *ngFor="let text of button.textList" (click)="button.setText(text); indicateChange(button);">
+      <small class="dropdown-item" *ngFor="let text of button.textList" (click)="button.text = text; indicateChange(button);">
         {{text}}
       </small>
     </div>
@@ -30,8 +30,8 @@
   <div class="d-flex-inline d-flex flex-row mr-2">
     <!--Button-->
     <div class="d-inline mr-1">
-      <button class="btn background-{{button.getColour().toLowerCase()}} btn-square">
-        {{button.getText()}}
+      <button class="btn background-{{button.colour.toLowerCase()}} btn-square">
+        {{button.text}}
       </button>
     </div>
     <!--Strip display-->

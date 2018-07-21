@@ -1,23 +1,23 @@
 export class StripLED {
-    private colour: string;
+    private _colour: string;
     public colours = stripColours;
 
     constructor(
         colour?: string,
     ) {
-        this.setColour(colour);
+        this.colour = colour;
     }
 
-    public setColour(colour?: string): void {
+    set colour(colour: string) {
         if(colour) {
-            this.colour = colour;
+            this._colour = colour;
         } else {
-            this.colour = this.colours[0];
+            this._colour = this.colours[0];
         }
     }
 
-    public getColour(): string {
-        return this.colour;
+    get colour(): string {
+        return this._colour;
     }
 }
 

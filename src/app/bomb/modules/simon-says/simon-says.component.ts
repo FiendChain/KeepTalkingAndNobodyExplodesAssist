@@ -20,12 +20,12 @@ export class SimonSaysComponent implements BombModuleInterface {
         public service: BombService,
     ) { 
         // register for serial changes
-        this.service.getSerial().subscribe((serial) => {
+        this.service.serial$.subscribe((serial) => {
             this.serialHasVowel = this.checkSerialHasVowel(serial);
             this.recomputeOutputSequence();
         });
         // register for changes to total strikes
-        this.service.getTotalStrikes().subscribe((totalStrikes) => {
+        this.service.totalStrikes$.subscribe((totalStrikes) => {
             if(totalStrikes == undefined) return;   // ignore not defined
             if(totalStrikes < 0) totalStrikes = 0;  // limit to positive or zero
             if(totalStrikes > 2) totalStrikes = 2;  // limit total strikes

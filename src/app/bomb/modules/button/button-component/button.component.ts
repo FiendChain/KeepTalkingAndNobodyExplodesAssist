@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core"
-import { SquareButton } from "./button.model";
+import { SquareButton, colourClasses } from "./button.model";
 import { StripLED } from "../strip-component/strip.model";
-import { colourMappings } from "../../../colour-mappings";
 
 @Component({
     selector: 'square-button',
@@ -21,12 +20,8 @@ export class SquareButtonComponent {
     @Output('onChange') onChange = new EventEmitter<SquareButton|StripLED>();
 
     // get class for selector
-    public getSelectorClasses(): any {
-        var selectorClasses: any = {};
-        colourMappings.forEach((colourClass: string, colour: string): void => {
-            selectorClasses[`btn-outline-${colourClass}`] = this.button.getColour() == colour;
-        });
-        return selectorClasses;
+    get selectorClass(): any {
+        return colourClasses[this.button.colour];
     }
 
     public indicateChange(object: SquareButton | StripLED): void {

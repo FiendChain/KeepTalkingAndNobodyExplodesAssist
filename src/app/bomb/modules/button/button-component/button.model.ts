@@ -1,6 +1,6 @@
 export class SquareButton {
-    private colour: string;
-    private text: string;
+    private _colour: string;
+    private _text: string;
     public colours = colourList;
     public textList = textList;
 
@@ -8,32 +8,32 @@ export class SquareButton {
         colour?: string,
         text?: string,
     ) {
-        this.setColour(colour);
-        this.setText(text);
+        this.colour = colour;
+        this.text = text;
     }
 
-    public setColour(colour?: string): void {
+    set colour(colour: string) {
         if(colour) {
-            this.colour = colour;
+            this._colour = colour;
         } else {
-            this.colour = colourList[0];
+            this._colour = colourList[0];
         }
     }
 
-    public getColour(): string {
-        return this.colour;
+    get colour(): string {
+        return this._colour;
     }
 
-    public setText(text?: string): void {
+    set text(text: string) {
         if(text) {
-            this.text = text;
+            this._text = text;
         } else {
-            this.text = textList[0];
+            this._text = textList[0];
         }
     }
 
-    public getText(): string {
-        return this.text;
+    get text(): string {
+        return this._text;
     }
 }
 
@@ -50,3 +50,10 @@ var textList: string[] = [
     "Detonate",
     "Hold",
 ];
+
+export const colourClasses: any = {
+    "Blue": "btn-outline-primary",
+    "Red": "btn-outline-danger",
+    "White": "btn-white",
+    "Yellow": "btn-outline-warning",
+}

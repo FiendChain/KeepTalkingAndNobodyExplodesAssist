@@ -17,14 +17,8 @@ export class TimerComponent implements BombModuleInterface {
         new BombTimerDigit(60, 5, "m"),
         new BombTimerDigit(60, 0, "s"),
     ]);
-
-    public totalStrikes: number = 0;
-
+    
     constructor(
         public service: BombService,
-    ) { 
-        this.service.getTotalStrikes().subscribe((totalStrikes) => {
-            this.totalStrikes = totalStrikes;
-        });
-    }
+    ) {}
 }

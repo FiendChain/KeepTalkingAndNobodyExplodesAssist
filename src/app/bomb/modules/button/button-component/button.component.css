@@ -2,3 +2,10 @@
     min-width: 100px;
     min-height: 100px;
 }
+
+.btn-white {
+    background: white;
+    border-color: black;
+    border-radius: 2px;
+    color: black;
+}
