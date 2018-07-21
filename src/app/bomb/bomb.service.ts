@@ -12,108 +12,101 @@ import { maxIndicators } from "./bomb-component/litIndicators.data";
 
 @Injectable()
 export class BombService {
-    // observables to listen to
-    private serialSubject = new BehaviorSubject<string>("");
-    private modulesSubject = new BehaviorSubject<BombModuleInterface[]>([]);
-    private totalBatteriesSubject = new BehaviorSubject<number>(0);
-    private totalStrikesSubject = new BehaviorSubject<number>(0);
-    private litIndicatorsSubject = new BehaviorSubject<string[]>([]);
-    private portsSubject = new BehaviorSubject<string[]>([]);
-
-    // internal bomb data
-    private modules: BombModuleSelector[] = [];
-    private serial: string = "";
-    private totalBatteries: number = 0;
-    private totalStrikes: number = 0;
-    private litIndicators: string[] = [];
-    private ports: string[] = [];
-
-    // timeouts to prevent too many changes from happening
-    private serialTimeout: any;
-
     constructor() {}
 
-    // set and get serial number
-    public getSerial(): Observable<string> {
-        return this.serialSubject.asObservable();
+    // serial number
+    private _serialSubject = new BehaviorSubject<string>("");
+    private _serial: string = "";
+    private _serialTimeout: any;
+
+    get serial$(): Observable<string> {
+        return this._serialSubject.asObservable();
     }
 
-    public setSerial(serial: string): void {
-        clearTimeout(this.serialTimeout);
-        this.serialTimeout = setTimeout(() => {
-            this.serial = serial;
-            this.serialSubject.next(serial);
+    set serial(serial: string) {
+        clearTimeout(this._serialTimeout);
+        this._serialTimeout = setTimeout(() => {
+            this._serial = serial;
+            this._serialSubject.next(this._serial);
         }, 500);
     }
 
-    // add and remove modules
+    // add modules
+    private _modules: BombModuleSelector[] = [];
+
     public addModule(bombModule: BombModuleSelector): void {
-        this.modules.push(bombModule);
-        // update the modules to subscribers
-        var modules: BombModuleInterface[] = [];
-        for(let module of this.modules) {
-            modules.push(module.getModule());
-        }
-        this.modulesSubject.next(modules);
+        this._modules.push(bombModule);
     }
 
-    public getModules(): Observable<BombModuleInterface[]> {
-        return this.modulesSubject.asObservable();
+    // total batteries
+    private _batteries: string[] = [];
+    private _batteriesSubject = new BehaviorSubject<string[]>([]);
+
+    get batteries$(): Observable<string[]> {
+        return this._batteriesSubject.asObservable();
     }
 
-    // total batteries subscriber
-    public getTotalBatteries(): Observable<number> {
-        return this.totalBatteriesSubject.asObservable();
+    public addBattery(battery: string): void {
+        this._batteries.push(battery);
+        this._batteriesSubject.next(this._batteries);
     }
 
-    public setTotalBatteries(totalBatteries: number): void {
-        this.totalBatteries = totalBatteries;
-        this.totalBatteriesSubject.next(totalBatteries);
+    public removeBattery(index: number): void {
+        this._batteries.splice(index, 1);
+        this._batteriesSubject.next(this._batteries);
     }
 
-    // add total strikes subscriber
-    public getTotalStrikes(): Observable<number> {
-        return this.totalStrikesSubject.asObservable();
+    // total strikes
+    private _totalStrikes: number = 0;
+    private _totalStrikesSubject = new BehaviorSubject<number>(0);
+
+    get totalStrikes$(): Observable<number> {
+        return this._totalStrikesSubject.asObservable();
     }
 
-    public setTotalStrikes(totalStrikes: number): void {
-        this.totalStrikes = totalStrikes;
-        this.totalStrikesSubject.next(totalStrikes);
+    set totalStrikes(totalStrikes: number) {
+        this._totalStrikes = totalStrikes;
+        this._totalStrikesSubject.next(this._totalStrikes);
     }
 
-    // modify lit indicators
-    public getLitIndicators(): Observable<string[]> {
-        return this.litIndicatorsSubject.asObservable();
+    // lit indicators
+    private _litIndicators: string[] = [];
+    private _litIndicatorsSubject = new BehaviorSubject<string[]>([]);
+
+    get litIndicators$(): Observable<string[]> {
+        return this._litIndicatorsSubject.asObservable();
     }
 
     public addLitIndicator(name: string): void {
-        // if too maany lit indicators show alert
-        if(this.litIndicators.length < maxIndicators) {
-            this.litIndicators.push(name);
-            this.litIndicatorsSubject.next(this.litIndicators);
+        if(this._litIndicators.length < maxIndicators) {
+            this._litIndicators.push(name);
+            this._litIndicatorsSubject.next(this._litIndicators);
         }
     }
 
     public removeLitIndicator(index: number): void {
-        this.litIndicators.splice(index, 1);
-        this.litIndicatorsSubject.next(this.litIndicators);
+        this._litIndicators.splice(index, 1);
+        this._litIndicatorsSubject.next(this._litIndicators);
     }
 
-    // modify ports
-    public getPorts(): Observable<string[]> {
-        return this.portsSubject.asObservable();
+    // ports
+    private _ports: string[] = [];
+    private _portsSubject = new BehaviorSubject<string[]>([]);
+
+    get ports$(): Observable<string[]> {
+        return this._portsSubject.asObservable();
     }
 
     public addPort(name: string): void {
         // if too many ports
-        if(this.ports.length < maxPorts) {
-            this.ports.push(name);
-            this.portsSubject.next(this.ports);
+        if(this._ports.length < maxPorts) {
+            this._ports.push(name);
+            this._portsSubject.next(this._ports);
         }
     }
 
     public removePort(index: number): void {
-        this.ports.splice(index, 1);
-        this.portsSubject.next(this.ports);
+        this._ports.splice(index, 1);
+        this._portsSubject.next(this._ports);
     }
 }
