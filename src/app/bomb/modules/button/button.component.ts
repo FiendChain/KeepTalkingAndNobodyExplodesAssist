@@ -35,7 +35,7 @@ export class ButtonComponent implements BombModuleInterface {
         })
     }
 
-    private updateInstructions(): void {
+    public updateInstructions(): void {
         let instructions: ButtonInstructions = getInstructions(this.button, this.stripLED, this.totalBatteries, this.litIndicators);
         this.buttonAction = instructions.buttonAction;
         this.stripAction = instructions.stripAction;
