@@ -2,14 +2,18 @@
   <div class="card-body">
     <!--Selector-->
     <div class="module-selector float-right" style="z-index: 1;">
-        <div ngbDropdown class="d-inline-block" placement="bottom-right">
-          <button class="btn btn-outline-primary btn-sm" id="module_list" ngbDropdownToggle>{{moduleName || "None"}}</button>
-          <div ngbDropdownMenu aria-labelledby="module_list">
-            <small class="dropdown-item" *ngFor="let option of getOptions()" (click)="loadModule(option)">{{option}}</small>
-            <div class="dropdown-divider"></div>
-            <small class="dropdown-item" (click)="loadModule(null)">None</small>
-          </div>
+      <div ngbDropdown class="d-inline-block" placement="bottom-right">
+        <button class="btn btn-outline-primary btn-sm" id="module_list" ngbDropdownToggle>
+          <!--Dependency badge-->
+          <div *ngIf="dependencies" class="badge badge-danger" style="z-index: 1" placement="bottom" [ngbTooltip]="dependencyTooltip">D</div>
+          {{moduleName || "None"}}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="module_list">
+          <small class="dropdown-item" *ngFor="let option of options" (click)="loadModule(option)">{{option}}</small>
+          <div class="dropdown-divider"></div>
+          <small class="dropdown-item" (click)="loadModule(null)">None</small>
         </div>
+      </div>
     </div>
     <!--Bomb module-->
     <div class="text-left">
@@ -17,4 +21,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #dependencyTooltip>
+  <p class="mb-1">
+    <small>
+      <strong>Dependencies</strong><br>
+      <ng-container *ngFor="let dependency of dependencies">
+        {{dependency}}<br>
+      </ng-container>
+    </small>
+  </p>
+</ng-template>
 

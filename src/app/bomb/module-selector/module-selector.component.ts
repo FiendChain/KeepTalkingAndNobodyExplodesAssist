@@ -1,10 +1,9 @@
 import { Component, ViewChild, ComponentFactoryResolver, OnInit, Input } from "@angular/core";
 // regular modules
 import { BombModuleContainer } from "./module-container.directive";
-import { ButtonComponent } from "../modules/button/button.component";
 import { BombService } from "../bomb.service";
 import { BombModuleInterface } from "../bomb-module.interface";
-import { bombModules, bombModuleNames } from "./bomb-module-list";
+import { bombModules, bombModuleNames, bombModuleDependencies } from "./bomb-module-list";
 
 @Component({
     selector: 'bomb-module-selector',
@@ -14,10 +13,11 @@ import { bombModules, bombModuleNames } from "./bomb-module-list";
     ],
 })
 export class BombModuleSelector implements OnInit {
-    @Input('module-name') moduleName: string = bombModuleNames[0];
+    @Input('module-name') moduleName: string;
 
-    @ViewChild(BombModuleContainer) module: BombModuleContainer;
-    private moduleInstance: BombModuleInterface;
+    @ViewChild(BombModuleContainer) private moduleContainer: BombModuleContainer;
+    private _module: BombModuleInterface;
+    private _dependencies: string[];
 
     constructor(
         private componentFactorResolver: ComponentFactoryResolver,
@@ -27,34 +27,49 @@ export class BombModuleSelector implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadModule();
+        this.loadModule(this.moduleName);
     }
 
-    public getModule(): BombModuleInterface {
-        return this.moduleInstance;
+    set module(component: BombModuleInterface) {
+        // if null module
+        if(!component) {
+            this.moduleContainer.viewContainerRef.clear();
+            this._module = undefined;
+            this._dependencies = undefined;
+        } else {
+            let componentFactory = this.componentFactorResolver.resolveComponentFactory(<any>component);
+            let viewRefContainer = this.moduleContainer.viewContainerRef;
+            viewRefContainer.clear();
+            let componentRef = viewRefContainer.createComponent(componentFactory);
+            this._module = <BombModuleInterface>componentRef.instance;
+        }
     }
 
-    public getOptions(): string[] {
+    get module(): BombModuleInterface {
+        return this._module;
+    }
+
+    set dependencies(dependencies: string[]) {
+        this._dependencies = dependencies;
+    }
+
+    get dependencies(): string[] {
+        return this._dependencies;
+    }
+
+    get options(): string[] {
         return bombModuleNames;
     }
-
-    public loadModule(name: string = this.moduleName): void {
+    
+    public loadModule(name?: string): void {
         this.moduleName = name;
-        if(!this.moduleName) {
-            this.module.viewContainerRef.clear();
-        } else if(bombModules.has(this.moduleName)) {
-            this.loadComponent(bombModules.get(this.moduleName));
+        if(!name) {
+            this.module = undefined;
+        } else if(bombModules.has(name)) {
+            this.module = bombModules.get(name);
+            this._dependencies = bombModuleDependencies.get(name);
         } else {
-            this.loadComponent(ButtonComponent);
-            this.moduleName = bombModuleNames[0];
+            this.module = undefined;
         }  
-    }
-
-    private loadComponent(component): void {
-        let componentFactory = this.componentFactorResolver.resolveComponentFactory(component);
-        let viewRefContainer = this.module.viewContainerRef;
-        viewRefContainer.clear();
-        let componentRef = viewRefContainer.createComponent(componentFactory);
-        this.moduleInstance = <BombModuleInterface>componentRef.instance;
     }
 }
