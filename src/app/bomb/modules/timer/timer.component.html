@@ -1,15 +1,12 @@
-<div>
-  <div class="form-group">
-    <input  type="number" class="form-control form-control-sm" 
-            id="strikes" placeholder="Strike Count" 
-            [ngModel]="service.totalStrikes$ | async" (ngModelChange)="service.totalStrikes = $event" 
-            min="0" max="2" required 
-            #strikes="ngModel" 
-            style="width: 30%">
-    <small for="strikes" class="form-text text-muted">Total strikes</small>
+<div class="d-flex-row mb-2" style="width: 70%">
+  <div ngbDropdown>
+    <button class="btn btn-sm btn-outline-primary" style="width: 50%" ngbDropdownToggle>Strikes: {{service.totalStrikes$ | async}}</button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <div class="dropdown-item" *ngFor="let i of [0,1,2]" (click)="service.totalStrikes = i">{{i}}</div>
+    </div>
   </div>
 </div>
-<div>
+<div class="d-flex-row">
   <div class="btn btn-lg btn-outline-primary timer" (click)="timer.toggle()">
     <a *ngFor="let digit of timer.getDigits()">
       {{digit.getValue()}}
